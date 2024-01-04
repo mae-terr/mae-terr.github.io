@@ -1,0 +1,207 @@
+---
+title: "Using the Big Five Personality Traits to Predict Wealth"
+author: "Maelynn Terr"
+date: "May 01, 2023"
+#output: html_document
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(mosaic)
+library(knitr)
+library(tinytex)
+library(leaps)
+library(knitr)
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(out.width = "50%")
+```
+
+```{r, include=FALSE}
+lifePsyche <- read.csv("C:\\Users\\maete\\OneDrive\\Documents\\Website and Blog\\Life_Psyche_Data.csv") 
+
+# Big five columns for the 15 questions: 214,215,216, 217, 218, 219,220,221,222,223,224,225,226,227,228
+#564: ExtraversionSum
+#567: AgreeabilitySum
+#570: ConscientiousnessSum
+#573: NeuroticismSum
+#576: OpennessSum
+
+#What we will be predicting based off of Big 5
+
+#621: WealthSum
+
+bigFive <- lifePsyche %>% 
+  select(53,54,564,567,570,573,576,583,594,600, 607, 621)
+bigFive
+
+# socialDesire <- lifePsyche %>%
+#   select(247,248,249,250,251,252,253,254,255,256,257,258,259)
+
+
+```
+
+```{r, include=FALSE}
+
+set.seed(101)
+sample <- sample.int(n=nrow(bigFive),size=floor(0.7*nrow(bigFive)),replace=FALSE)
+
+bigFive_train <- bigFive[sample,]
+bigFive_test <- bigFive[-sample,]
+```
+
+
+# Project Overview
+
+The big five personalities are traits that some researchers and psychologists use to characterize people. I will be using these big five traits to run predictions on which trait is most likely to impact wealth.
+
+This analysis will question, *The personality traits of self-made and inherited millionaires* study linked below. The authors and researchers of the study claim high conscientiousness is the most important characteristic of wealth success. However, this paper will argue that the most important characteristic of wealth success is actually low neuroticism. 
+
+### Link to Criticized Study:
+
+https://www.nature.com/articles/s41599-022-01099-3
+
+# Analysis Approach
+
+A multiple linear regression model will be used to see which of the big five has the most statistical significance to wealth. In other words, a regression model will reveal which personality trait is the strongest predictor of wealth.
+
+This analysis takes data from a Life Psyche survey that was administered online to people getting paid to complete the survey. People put answer questions meant to rank their personality type. This analysis uses the sum of these questions as data points.
+
+The linear regression models will use the following **predictors** from the Life Psyche data set:
+ 
+* ExtraversionSum
+* AgreeabilitySum
+* ConscientiousnessSum 
+* NeuroticismSum
+* OpennessSum
+
+To predict the **response**:
+
+* WealthSum
+
+
+# Visualizations
+
+### Conscientousness vs Wealth
+```{r, echo=FALSE, out.width="80%", fig.align = 'center'}
+ggplot(data=bigFive, aes(x=ConscientiousnessSum, y= WealthSum))+
+    geom_point(alpha=.9, aes(color=SAT_ENG+SAT_MATH))+
+      geom_jitter(width=0.2,height=0.2,alpha=0.3, aes(color=SAT_ENG+SAT_MATH)) +
+
+  theme_bw()
+```
+Fig. 1 
+
+### Neuroticism vs Wealth
+```{r, echo=FALSE, out.width="80%", fig.align = 'center'}
+ggplot(data=bigFive, aes(x=NeuroticismSum, y= WealthSum))+
+geom_point(alpha=.9, aes(color=SAT_ENG+SAT_MATH))+
+      geom_jitter(width=0.2,height=0.2,alpha=0.3, aes(color=SAT_ENG+SAT_MATH)) +
+  theme_bw()
+```
+Fig. 2
+
+Figures 1 and 2 are constructed as scatterplots. The scatterplots have points dispersed using "jitter" in ggplot. This is due to the survey questions using discrete rankings rather than a continuous scale. The jitter function allows us to see how many points are congregated. Secondly, there is a stem plot to gauge where the majority of points lie. Finally, the color of the points indicate a person's intelligence, measured by math and English SAT scores. 
+
+In figure 2 the density of the congregated points show that as neuroticism decreases, wealth increases. The opposite goes for conscientiousness. In figure 1 as conscientiousness decreases, wealth increases. 
+
+From the two scatterplots there is not enough differentiation to see whether neuroticism or conscientiousness is most correlated to wealth. **From the plots alone, we do not have the justification to prove that neuroticism is a higher indicator of wealth than consciousness.** 
+
+## Test Data
+
+The regression will first be run using 30% of the data as a test set. This is a sample size of 859 observations. Eventually, it will be tested against the other 70% (2,003 observations) of the data set. These 2,003 observations are refered to as the training set. This method of splitting the data will verify the results. If the two sets of data that do not share any of the same responses have the same p-value rankings, then we can most likely trust our analysis. 
+
+## Multiple Linear Regression Model
+
+A regression model is useful in this scenario since conscientiousness is correlated with wealth in a positive direction whereas neuroticism is correlated with wealth in a negative direction. 
+
+We will be using the big five as predictors, and wealth as response for the model. Based on the p-value the big five can be rated from strongest correlation to wealth, to weakest.
+
+```{r, echo=FALSE}
+model9<-lm(WealthSum~ExtraversionSum+AgreeabilitySum+ConscientiousnessSum+NeuroticismSum+OpennessSum, data=bigFive_test)
+
+summary(model9)
+```
+Fig. 3
+
+Figure 3 is a regression model that uses all big five personality traits to predict wealth.
+
+The strongest correlated variables to wealth:
+
+1. Neuroticism
+2. Conscientiousness
+3. Openness
+4. Agreeability
+5. Extraversion
+
+Neuroticism is the best predictor of wealth. It is a better predictor than conscientiousness. Therefore we can reject the study *Personality traits of self-made and inherited millionaires* . 
+
+# Testing Reliability
+
+```{r, echo=FALSE}
+model10<-lm(WealthSum~ExtraversionSum+AgreeabilitySum+ConscientiousnessSum+NeuroticismSum+OpennessSum, data=bigFive_test)
+
+summary(model10)
+```
+Fig. 4
+
+The regression model above (Figure 4) uses the other 70% of the data. The rankings of statistical significance, measured by the p-value, are the same as in Figure 3. This confirms that neuroticism is the best predictor of wealth.
+
+
+# Conclusion
+
+When we use both the plots and the regression model together, we get a much better understanding of the strength **and** direction of the correlation between wealth, neuroticism and consciensouness. In the study, *Personality traits of self-made and inherited millionaires*, the researchers are very close to being accurate. If the study were to adjust the text, to speak in terms of, "which variable is most **positively** correlated to wealth," then the analysis would be correct. 
+
+Ultimately, the strongest predictor of wealth is neuroticism. Therefore a person's level of neuroticism is more significant to income than any other trait. 
+
+
+
+# Extra Graphs and Regression Models
+
+### Testing Normality
+
+The plot below uses the data from Figure 3 to test normality. In order to run an accurate prediction from a multiple linear regression model, the data must follow four assumptions. The  assumptions necessary are linearity, independence, normality, and constant variance between the predictor and response. 
+
+
+```{r, echo=FALSE}
+plot(model9)
+```
+Fig. 5
+
+These plots confirm that the data is in fact normally distributed. 
+
+### Conscientouness and SAT Scores as Predictors of Wealth
+
+```{r, echo=FALSE}
+model1<-lm(WealthSum~ConscientiousnessSum+SAT_MATH+SAT_ENG, data=bigFive)
+
+summary(model1)
+```
+Fig. 6
+
+### Neuroticism and SAT Scores as Predictors of Wealth
+
+```{r, echo=FALSE}
+model2<-lm(WealthSum~NeuroticismSum+SAT_MATH+SAT_ENG, data=bigFive)
+
+summary(model2)
+```
+Fig. 7
+
+### Conscientouness, Neuroticism, and SAT Scores as Predictors of Wealth
+
+```{r, echo=FALSE}
+model3<-lm(WealthSum~NeuroticismSum+ConscientiousnessSum+SAT_MATH+SAT_ENG, data=bigFive)
+
+summary(model3)
+```
+Fig. 8
+
+
+
+
+
+

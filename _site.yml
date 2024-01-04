@@ -1,0 +1,36 @@
+
+author: "Maelynn Terr"
+date: "`r Sys.Date()`"
+
+
+
+name: "my-website"
+navbar:
+  title: "Maelynn Terr"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Election Maps"
+      href: election.html
+    - text: "Global Wage Regression Model"
+      href: regression.html
+    - text: "Blogs"
+      href: blogs.html
+    - text: "Bill Analyses"
+      href: bills.html
+    - text: "Personality Traits Regression"
+      href: traits.html
+
+
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      after_body: footer.html
+    css: styles.css
+    
+    
+ 

@@ -1,0 +1,31 @@
+---
+title: "Home"
+author: "Maelynn Terr"
+---
+
+
+Welcome to my portfolio showcasing a collection of both personal and academic projects. I have made this website from scratch by harnessing the power of the R programming language and my love of data science.
+
+For an optimal viewing experience, I recommend navigating through the tabs from left to right, allowing you to observe the progression of my projects in chronological order.
+
+First take a look into the maps and visualizations via the "Election Maps" section. This section contains my first R project! These visualizations offer election insights down to the county level. While these creations were my initial foray in R, it was the project that made me obsessed with the language.
+
+My next few projects are regression models starting with my "Global Wage Prediction" model. This model was created after taking my favorite class.. you guessed it, Applied Regression. If you can't get enough of those regression models make sure to look at  the "Personality Traits Regression" section.  
+
+For a professional writing sample read through the "Bill Analyses" tab. Within, you will find thorough essays that were sent to representatives and senators of the Colorado General Assembly. These evaluations offer a perspective on bills under consideration, and provide my economic insight on their potential impact.
+
+Thank you for taking the time to explore my portfolio! This site does not contain all my work projects. For more insights on my Tableau experience, and professional work experience please  email me at MaeTerr4@gmail.com 
+
+
+
+<!-- Hello to my many many viewers. So you are interested in my quirky little personal and academic projects. First recognize, damn this girl built her own website from scratch in R. Pretty sleek, I know. For the optimal viewing experience I recommend selecting tabs left to right so you can see my glow up (they go from oldest to newest). -->
+
+<!-- If you want to stimulate your eyes with wonderful maps and powerful visuals go click on the Election Maps. These visuals drill all the way down to the county! Don't judge TOO hard though because this was my very first R project. This project that made me fall deeply in love with R... so you can judge a little. Not me... the maps. Well maybe me too. -->
+
+<!-- I LOVE PREDICTION MODELING! You can see that clearly when you take a trip on down to the Global Wage Prediction model. This model was created after taking my fave class..you guessed it, Applied Regression. If you aren't getting enough models then venture on down to Personality Traits Regression and prepare to get your brain rocked as I analyze your personality traits using ANOTHER REGRESSION MODEL! Don't be insulted when I tell you how much you'll make based on your shitty personality...oop.  -->
+
+<!-- Finally I welcome you to take a look at the Bill Analyses tab. This tab includes essays that I sent to the Representatives and Senators of the General Assembly in Colorado. They are thorough evaluations of bills that were under consideration and have my economist opinion on whether they should be passed or not. Read these to get a sense of my professional, straight to the point writing... unlike this bio. -->
+
+<!-- Keep in mind, stats is not just a hobby, it's a lifestyle. Not only do I often mistakenly refer to people as points and my friend groups as samples, but at night I dream of evaluating data sets with a perfectly normal bell curve where 68% of the points within one standard deviation from the mean. Gauss is there looking down on me, proud as can be, hyping up my oh so sexy bell curves. -->
+
+<!-- *Soon to come is a gallery of crosswords so prepare your mind to eventually get rocked with some stimulating clues and epic answers. -->

@@ -1,0 +1,117 @@
+---
+title: "Bloggin it up"
+author: "Maelynn Terr"
+date: "`r Sys.Date()`"
+#output: html_document
+---
+
+
+These blog posts are from write ups I did in ECON 3080 to stay updated on current events and their impacts on the economy.
+
+
+### Blog post 7
+
+03/20/2022
+
+A barrel of oil is currently over $100. This is the highest price since 2001. The raise in price is due to the Ukrainian War’s supply deficits. However, the Canadian oil sands carry massive amounts of oil that is untouched because of the high expenses associated with tapping into the reserves. Companies in Canada are starting to reconsider the investment since current oil prices are soaring. If Canadian oil sands are exploited the inflation rate will steady as the supply of oil increases.
+
+The factors that are holding oil producing companies back are the upfront costs, and the process of separating oil from sand. The upfront costs to extract the heavy crude oil are a big investment especially because of a lack of pipelines. Secondly, dividing the oil and sand takes a tremendous amount of energy, only making the process more expensive.
+
+Another important point to recognize is that extracting oil has colossal effects on our air. The carbon footprint is extremely high, damaging the ozone layer, and making the air we breathe toxic.  This is not a factor that Canadian companies are currently paying attention to. With the Ukrainian War, social effects have been the issue companies have decided to put ahead of environmental impacts. In the article, Canadian Oil Sands: Buried Treasures,  Jinjoo Lee explains, “a year of elevated oil prices has turned companies mining them into cash machines”(Lee, 2022). With today’s political and economic state, the environment is not a concern that many governments will push to save.
+
+Many assumptions and guesses have been made about if Canada will make the investment to reach the oil. Nia Williams, an author for Reuter, believes there will not be additional oil extraction. Since Canada is already making more than $100 a barrel, the Oil Sands company is very comfortable and does not need the extra cash flow. Williams also explains, “ companies are wary of spending aggressively to grow oil production after the pain of 2020’s pandemic-induced oil price collapse”(Williams, 2022). As the world tries to get cheaper oil, Canadian producers may continue business as usual. 
+
+References:
+Canadian Oil Sands: Buried Treasure, 
+Jinjoo Lee, March 18, 2022
+As world scrambles for oil, Canadian producers reluctant to spend on growth, 
+Nia Williams, March 3, 2022
+
+<br>
+
+### Blog post 6: The Frightening Approach to Vaccinations in Uganda
+03/10/2022
+
+Vaccines are an important tool to protect populations, especially in third world countries. The most affordable and effective health investment is immunizations according to the World Health Organization. All of these views are reported in a news source located in Uganda. Meanwhile, seemingly going unreported in the source, Ugandan police are forcing citizens to get vaccines by detaining, proposing six-month jail terms for the unvaccinated, and intimidation. All being done in an effort to “protect public health”(Newvision). In Uganda the line of personal safety has been crossed in the name of saving lives in the nation.
+
+The largest news source in Uganda, New Vision, gives the perspective, “mandatory vaccination can be a perfectly legal tool to protect citizen’s health as long as it meets the set standards”(NEWVISION). Every claim in the article is a valid and sound argument, describing why Africa should have every person vaccinated to decrease death rates. The intention of getting people vaccinated was good but the real outcome is a forceful administration given to uneducated communities.
+
+The article, In Some African Nations, Armed Police Enforce Covid-19 Vaccinations, Nicholas Bariyo describes how people have dealt with the enforcements saying, “citizens are aware that criticizing government policy ‘almost guarantees some form of reprisal,’ according to the Human Rights Watch”(WSJ). Bariyo continues to discuss how families have relocated to more remote locations trying to avoid the vaccine because of religious beliefs, or fearing they will become sterile(a theory that does not have supporting evidence according to the CDC). In Uganda’s news source explaining why vaccinations should be mandated, there was a single mention of infertility as well as other misbeliefs with the claim, “most of this(coronavirus myths) can be attributed to cult practices across the country and misinformation on social media platforms”(NEWVISION). This is not an effective way to ease people’s concerns since it is not addressing the fear and giving real statistics. Rather than educating people about how vaccines work, research, and safety approval legislation, the article just tells the reader to not trust social media and information spread by word.
+	
+Aggressive and fear driven motivations to give the Covid-19 vaccine is the wrong way to maintain people’s health. Getting the population vaccinated by putting people in jail or using threats is dangerous to other aspects of a person’s health. An educated decision where a person has a choice is the only safe way to administer the vaccine.
+
+References:
+In Some African Nations, Armed Police Enforce Covid-19 Vaccinations, Nicholas Bariyo, February 28, 2022
+Uganda should legislate compulsory vaccination mandates for COVID-19, Fox Odoi-Oywelowo, November 24, 2021
+
+
+<br>
+
+### Blog post 5: Space Debris Impact
+
+03/06/2022
+
+Humans have been making environmental impacts because of their waste for ages now, but as of February of 2022 that impact has been extended to the moon. A piece of man made debris struck the surface of the moon and created a 65 foot wide crater. The rise in the amount of trash sent to space is going to create long-term issues for our economy and environment.
+Space trash collides with other trash which produces more trash in smaller pieces. The debris destroys multimillion dollar satellites, creating even more debris, and affecting astronauts and their routes. The cost of losing a satellite is not only monetary. Many satellites have functions which help us everyday. The European Space Agency explains this in the article The cost of space debris saying, “Important space applications could be lost, such as weather forecasting, climate monitoring, earth sciences and space-based communications”(ESA, 2020). Without monitoring devices running efficiently, humans may not be able to avoid natural disasters that could otherwise have been avoided.
+Corporations have gone too far to try to dispose of their trash and it has made its first impact on the moon. An old rocket booster hit the lunar surface at 5,800 miles per hour creating an unintentional scar. Humans have not yet found a way to maintain trash in space. In the Wallstreet Journal article, Space Junk Just Dug Big New Crater on Moon, Astronomers Say, Aylin Woodward describes, “the moon is another 226,000 or so miles away—and no official entity is tracking the junk in between”(Woodward, 2022).  With no way to dispose of trash safely in space, companies should simply not resort to that. 
+For economic and moral reasons, waste emissions into space needs to come to a halt. Aerospace and weather companies are financially burdened and climate forecasting accuracy will decrease. This new crater should serve as a reminder and warning of the issues that will occur as a consequence of polluting space.
+
+
+References:
+Space Junk Just Dug Big New Crater on Moon, Astronomers Say, Aylin Woodward, March 4, 2022
+The cost of space debris, The European Space Agency, July 5, 2020
+
+
+### Blog post 4: Ukraine War Impact on Supply
+
+02/28/2022
+
+
+The crisis between Ukraine and Russia started when Russia invaded Ukraine. This has had devastating impacts on citizens in Ukraine and all across Europe. One result of this is a major halt in the supply chain. The war is slowing the supply chain in Russia, Ukraine, and the rest of the European Union. These impacts will negatively influence the global economy. 
+ Many countries rely on exports from Ukraine including oil, natural gas, and food. Food security around the world will be affected and the author, Weizhen Tan, explains in her article, How a Russian invasion of Ukraine, the ‘breadbasket of Europe,’ could hit supply chains, that “In fact, it’s not just the European Union that will be hit — many nations in the Middle East and Africa also rely on Ukrainian wheat and corn, and disruptions to that supply could affect food security in those regions”(Tan, 2022). 
+With supply decreasing, prices will rise for many goods which will lead to a much higher rate of inflation than ideal. In the article, Ukraine War Means Another Supply Shock to Global Economy, the Last Thing It Needs, Jon Hilsenrath explains a shock to the supply chain “ is likely to exacerbate a global inflation problem and make matters harder for the Federal Reserve and other central banks, which are trying to prevent consumer prices from rising out of control”(Hilsenrath, 2022). Ukraine’s currency is currently decreasing as Russian troops continue to invade, forcing Ukraine to increase prices on their exports. The rest of the European Union will feel the effect as well and inflation will rapidly rise. Inflation rising is not always negative but the inflation rising this quickly will result in a struggling economy.
+People evaluate impacts on the market, and the result of a bad economy is shown qualitatively which can make us forget who is actually being impacted. This economic struggle impacts people’s health and livelihoods. The crisis between Ukraine and Russia will not only change a number assigned to a market but will hurt citizens and consumers.
+References:
+Ukraine War Means Another Supply Shock to Global Economy, the Last Thing It Needs Jon Hilsenrath, February 25, 2022
+How a Russian invasion of Ukraine, the ‘breadbasket of Europe,’ could hit supply chains Weizhen Tan, February 23, 2022
+
+<br>
+
+### Blog post 3: Beijing Olympic Criticism
+
+02/04/2022
+	
+The Olympic Games are coming up, and this year they will take place in Beijing, China. China has already hosted the Olympics in 2008 and were highly successful, but because of human right protests and boycotts this year games will be less popular.
+
+China’s economy has grown considerably since 2008, and are much better prepared financially this time around. “It’s gross domestic product grew from almost $5 trillion in 2008 to $18 trillion in 2021, making China the world’s second-largest economy after the U.S.”(Areddy, 2022). The increase of wealth would make you assume that this year's Olympics would be just as or more grand than 2008, but because of human rights boycotts this may not be the case. U.S. officials will be boycotting the games, and Jen Psaki explained she will not be going because, “ongoing genocide and crimes against humanity in Xinjiang and other human-rights abuses” (Psaki, 2022). 
+
+Political powers are not the only ones boycotting the games. Athletes and sponsors are also reluctant to support China’s Olympics. One of the main sponsors of the 2008 games was Coca Cola. The company had massive congratulations in 2008 ceremonies and seemed to be proud sponsors. This year Coca Cola will remain a sponsor but not to the same extent as the previous games. Coca Cola does not want criticism from the U.S. or China, so the approach to the 2022 games is to keep their head down by decreasing marketing, and the executives have chosen to not attend.
+
+With all the boycotts, we question how much it will affect athletes when they compete. The Olympic Charter, that lists rules and regulations, states, “no kind of demonstration or political, religious or racial propaganda is permitted in any Olympic sites, venues or other areas”(International Olympic Committee, 2021). With this rule put in place, there should not be any retaliation from people participating in the 2022 Olympics, however people are free to voice their opinions on social media.
+
+References:
+China's Unspoken Winter Olympics Theme: 'We're Here, Get Used to It' 
+James T. Areddy, February 3, 2022
+Beijing Winter Olympics then and now: Why the 2008 and 2022 Olympics feel worlds apart Saphora Smith and Jennifer Jett, February 3, 2022
+Olympic Charter 
+International Olympic Committee, October, 2021
+
+<br>
+
+### Blog post 1: An Optimist's Perspective on Omicron’s Economic Effects
+
+01/21/2022
+
+We are living in very uncertain times where you could go from concerts to quarantining within a matter of days. Our way of life and economy fluctuates the same way these variants have. The latest Covid-19 variant, Omicron has slowed the market, and has caused inflation to rise. Although the economy was severely hurt when the Omicron hit, businesses and people will recover swiftly.
+
+Retail sales in December of 2021 were growing at an astounding pace because of the holidays but going into the New Year, sales dropped. People have been saving more during the pandemic and that is shown by the 16.9% sales growth this December compared to the same time last year. Once Omicron cases surged, sales dropped by 1.9%. The drop in sales was caused by consumers spending less and staffing. Manufactures could not anticipate demand and a spike in Covid-19 cases, caused stores to reduce hours due to staffing shortages.
+
+Stores were not only affected by consumer and production problems, but high inflation has caused financial struggles for retailers. “Retail sales are adjusted for seasonal variations, but aren’t adjusted for inflation, so the increases of the past year are damped by historically high inflation”(Rubin). Inflation grew, making the consumer-price index  7%, the highest it has been in years. 
+
+Information like this makes our future seem doomed, however I am an optimist and believe that we will make a quick recovery. According to Denver Post author, Meg Wingerter, discusses how Omicron cases have been high causing many hospital beds to be taken, but even though cases are high, numbers are declining. Wingerter explains, “with new COVID-19 cases falling in Colorado, public health officials expressed optimism Thursday that the state’s omicron surge has peaked”(Wingerter).
+
+Our economy has made recoveries in the past when variants such as Delta have appeared. Inflation rises during the peak but eventually plateau and start to decline. We do not know how much longer different variants will affect us, but each time our recovery will be faster and as we become more experienced handling fluctuations which will only make us better at regaining momentum after a hit. 
+
+References:
+Wall Street Journal: U.S. Retail Spending, Manufacturing Drop as Omicron and Inflation Surge by Gabriel T. Rubin, January 14, 2022
+Denver Post: Colorado health officials “cautiously optimistic” state’s omicron surge has peaked by Meg Wingerter, January 20, 2022
