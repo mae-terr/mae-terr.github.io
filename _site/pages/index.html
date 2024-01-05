@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Maelynn Terr" />
+
+
+<title>Home</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Maelynn Terr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="_site/election.html">Election Maps</a>
+</li>
+<li>
+  <a href="regression.html">Global Wage Regression Model</a>
+</li>
+<li>
+  <a href="bills.html">Bill Analyses</a>
+</li>
+<li>
+  <a href="traits.html">Personality Traits Regression</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Home</h1>
+<h4 class="author">Maelynn Terr</h4>
+
+</div>
+
+
+<p>Welcome to my portfolio showcasing a collection of both personal and
+academic projects. I have made this website from scratch by harnessing
+the power of the R programming language and my love of data science.</p>
+<p>For an optimal viewing experience, I recommend navigating through the
+tabs from left to right, allowing you to observe the progression of my
+projects in chronological order.</p>
+<p>First take a look into the maps and visualizations via the “Election
+Maps” section. This section contains my first R project! These
+visualizations offer election insights down to the county level. While
+these creations were my initial foray in R, it was the project that made
+me obsessed with the language.</p>
+<p>Now, make sure to fasten your seatbelts when you delve into the
+“Global Wage Prediction” model. This model was created after taking my
+favorite class.. you guessed it, Applied Regression. If you can’t get
+enough of those regression models make sure to look at the “Personality
+Traits Regression” section.</p>
+<p>For a professional writing sample read through the “Bill Analyses”
+tab. Within, you will find thorough essays that were sent to
+representatives and senators of the Colorado General Assembly. These
+evaluations offer a perspective on bills under consideration, and
+provide my economic insight on their potential impact.</p>
+<p>Stay tuned for an upcoming addition – a gallery of crosswords. Since
+I am a expert crossword solver (I wish) and puzzle enthusiast I decided
+it was time to make some of my own that will be making an appearance on
+the site soon!</p>
+<p>Thank you for taking the time to explore my portfolio, and I hope by
+the end of perusing you find the same love of statistics as I do.</p>
+<p>P.S. Employers,</p>
+<p>This site only contains SOME of my academic and personal work, and
+does not include ANY work projects. For more insights on my other
+skillsets email me at <a href="mailto:MaeTerr4@gmail.com"
+class="email">MaeTerr4@gmail.com</a></p>
+<!-- Hello to my many many viewers. So you are interested in my quirky little personal and academic projects. First recognize, damn this girl built her own website from scratch in R. Pretty sleek, I know. For the optimal viewing experience I recommend selecting tabs left to right so you can see my glow up (they go from oldest to newest). -->
+<!-- If you want to stimulate your eyes with wonderful maps and powerful visuals go click on the Election Maps. These visuals drill all the way down to the county! Don't judge TOO hard though because this was my very first R project. This project that made me fall deeply in love with R... so you can judge a little. Not me... the maps. Well maybe me too. -->
+<!-- I LOVE PREDICTION MODELING! You can see that clearly when you take a trip on down to the Global Wage Prediction model. This model was created after taking my fave class..you guessed it, Applied Regression. If you aren't getting enough models then venture on down to Personality Traits Regression and prepare to get your brain rocked as I analyze your personality traits using ANOTHER REGRESSION MODEL! Don't be insulted when I tell you how much you'll make based on your shitty personality...oop.  -->
+<!-- Finally I welcome you to take a look at the Bill Analyses tab. This tab includes essays that I sent to the Representatives and Senators of the General Assembly in Colorado. They are thorough evaluations of bills that were under consideration and have my economist opinion on whether they should be passed or not. Read these to get a sense of my professional, straight to the point writing... unlike this bio. -->
+<!-- Keep in mind, stats is not just a hobby, it's a lifestyle. Not only do I often mistakenly refer to people as points and my friend groups as samples, but at night I dream of evaluating data sets with a perfectly normal bell curve where 68% of the points within one standard deviation from the mean. Gauss is there looking down on me, proud as can be, hyping up my oh so sexy bell curves. -->
+<!-- *Soon to come is a gallery of crosswords so prepare your mind to eventually get rocked with some stimulating clues and epic answers. -->
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
