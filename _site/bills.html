@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Maelynn Terr" />
+
+
+<title>Economic Analyses of House and Senate Bills in Colorado</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Maelynn Terr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="election.html">Election Maps</a>
+</li>
+<li>
+  <a href="regression.html">Global Wage Regression Model</a>
+</li>
+<li>
+  <a href="bills.html">Bill Analyses</a>
+</li>
+<li>
+  <a href="traits.html">Personality Traits Regression</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Economic Analyses of House and Senate Bills
+in Colorado</h1>
+<h4 class="author">Maelynn Terr</h4>
+
+</div>
+
+
+<p><br></p>
+<div id="sb23-253-economic-analysis" class="section level1">
+<h1>SB23-253 Economic Analysis</h1>
+<div id="section" class="section level3">
+<h3>04/12/2023</h3>
+</div>
+<div id="bill-overview" class="section level3">
+<h3>Bill Overview</h3>
+<p>SB23-253 bans non-compostable products from using misleading labels,
+images, or words that could indicate that the product is compostable.
+The intention of the bill is to allow people to easily identify a
+product as legitimately compostable.</p>
+<p>SB23-253 categorizes certain compostable design elements such as the
+word compostable, certified stamp, beige or green coloring, and other
+labels with compost connotations. This bill restricts the use of these
+emblems and design elements to products that are certifiably
+compostable.</p>
+<p>This bill directly addresses negative externalities and a market
+failure. These occur for two reasons. The first is the negative
+environmental impact of organic matter in landfills. The second is the
+lost value of properly composted items as fertilizer on farms.</p>
+<p>The value that consumers put on compost creates an incentive for
+manufacturers of non-compostable items to misrepresent their products as
+compostable. Companies will falsely represent products to deceive
+purchasers. The misrepresentation causes consumers to inadvertently pay
+more towards non-compostables, and dispose of their trash incorrectly.
+The provisions of this bill will internalize the externalities and
+promote a more efficient market. This bill should be passed.</p>
+</div>
+<div id="composting-benefits" class="section level3">
+<h3>Composting Benefits</h3>
+<p>The State of Colorado has determined that composting is critical to
+reaching the overall waste-diversion goals set by the Colorado
+Department of Public Health and Environment. The government has a
+legitimate interest in improving waste diversion because of the
+potential negative impacts of inappropriately handling waste.</p>
+<p>From 2018 to 2020 Colorado’s composting rate dropped from 17.2% to
+15.3% (CPR). As of 2022, the Department has aimed for 28% of waste to be
+either recycled or composted (RecycleCO). These goals have been put in
+place to alleviate the impacts that landfills and farms have on the
+environment and human health.</p>
+<p>With regard to composting, the government has an interest in
+correcting its use because there are negative consequences to its
+misuse. For example, when organic matter is put into landfills, it
+increases methane emissions. Methane is a primary greenhouse gas that
+has contributed to global warming (NRDC). In the US, 17% of greenhouse
+gas emissions are from methane pollution (EPA1). Additionally, landfills
+make up a large portion of methane pollution because they are the third
+largest source of methane emissions (EPA1). Another negative externality
+that compost has the potential to internalize is pollution from farm
+fertilizer. During rain events or snow melts, excess fertilizers can
+pollute nearby groundwater. The additional nutrients can pollute
+freshwater systems to the point of hypoxia, or dead zones in water
+bodies (EPA2). Algal blooms that produce toxins harmful to humans can
+grow as a result of the fertilizer (EPA2).</p>
+<p>Compost as an organic alternative reduces the need for fertilizers
+that contain harmful chemicals. Organic matter that is turned into
+compost becomes a valuable natural fertilizer. Compost is rich in
+nutrients such as nitrogen, phosphorus, and potassium. These nutrients
+aid plant growth. Additionally, each 1% increase in organic soil matter
+will allow the soil to retain 20,000 more gallons of water per acre
+(NRDC).</p>
+<p>In other words, when farms use clean compost instead of commercial
+fertilizer, it benefits the environment by limiting the negative
+externalities that fertilizers pose. Therefore, companies should be
+encouraged to provide compostable products and packaging. By regulating
+compost marketing SB23-253 encourages producers to make authentic
+compostable goods in order to internalize these externalities and move
+toward efficiency.</p>
+</div>
+<div id="greenwashing" class="section level3">
+<h3>Greenwashing</h3>
+<p>SB123-53 will prevent companies from misrepresenting their packaging
+or products as compostable when in fact they are not. This practice is
+part of the overall practice known as greenwashing, whereby a company
+tries to make itself look environmentally conscious. Companies use words
+such as “natural,” “degradable,” and others that can be misinterpreted
+because the words do not have regulatory definitions that restrict their
+use. Consumers may misperceive brands that use labels that appear to be
+environmentally conscious when the products are actually made from
+non-reusable materials. This marketing technique is intended to confuse
+environmentally conscious customers.</p>
+<p>A survey revealed that 66% of adults in the United States are willing
+to pay more for sustainable products (SB). When customers are willing to
+pay more for a compostable brand, manufacturers of alternative materials
+have the incentive to make their packaging look compostable. Any company
+has an incentive to use greenwashed designs if customers are willing to
+pay more. One result is an increase in consumer prices.</p>
+<p>Products that use non-renewable resources are typically cheaper than
+those that are compostable. Some biodegradable materials cost two to ten
+times more than non-biodegradable materials (SFGATE). Companies that
+misrepresent their products as being compostable have lower costs than
+those that are genuinely compostable. The lower costs allow
+unsustainable brands to charge more than they should for their
+non-compostable products, but still less than what genuinely compostable
+products charge. The lack of customer knowledge creates a rent, or
+unjust price increase, for non-compostable products.</p>
+<p>In a 2022 poll, company executives were asked to answer questions
+that gauged their company’s sustainability efforts. Out of the 1,491
+executives, 58% of them admitted to overstating sustainability efforts
+to consumers and greenwashing existing at their company (Cloud). These
+companies take advantage of people paying more for eco-friendly
+products. When companies use green marketing strategies for their
+non-compostable products and price them higher, then the companies that
+are actually paying more to be environmentally conscious cannot compete
+fairly.</p>
+</div>
+<div id="compost-manufacturers" class="section level3">
+<h3>Compost Manufacturers</h3>
+<p>When non-compostables are found at compost manufacturers, they pose a
+market failure that is a result of asymmetric information. This
+misinformation is between the producer and consumer, where the
+manufacturer knows the product is non-compostable, and the consumer
+believes it is. The greenwashed product that is put into the compost
+negatively inflicts the compost manufacturer’s operations.</p>
+<p>Plastics, glass, or other non-compostable products that are present
+in waste streams force the manufacturer to dispose of entire compost
+batches. When greenwashed contaminants end up in the compost, it
+increases the operating costs it takes to remove them. If fragments of
+non-compostable packaging, plastics, or any amount of glass are present,
+it causes the compost load to be rejected. When the contamination cannot
+be removed the entire compost load is taken to a landfill for
+disposal.</p>
+<p>Many compost manufacturers encourage non-organic material
+contamination to be removed by the consumer (A1). It is the most
+efficient method for the composting facility to generate high-quality
+compost. As a result of greenwashing, compost manufacturers struggle
+with an increasing amount of contamination. This has caused the largest
+composter in Colorado, A1 Organics, to encounter 10% contamination in
+their compost. As a result, starting April 1, 2023, A1 will only accept
+food scraps, yard trimmings, and approved bags (A1).</p>
+</div>
+<div id="administrative-actions" class="section level3">
+<h3>Administrative Actions</h3>
+<p>This bill aims to discourage greenwashing. If passed, companies will
+be encouraged to produce products that are genuinely compostable because
+they will no longer be able to greenwash non-compostable products.
+Additionally, successful manufacturers such as A1 Organics could
+potentially return to accepting all compostable materials. The amount of
+compost in landfills will be reduced, and will instead supply
+environmentally friendly fertilizers. Finally, this will reduce the
+environmental and human health negative externalities caused by
+landfills and farms.</p>
+<p>Under this bill, the Attorney General will promulgate specific
+regulations to establish appropriate standards. Any violations of those
+rules will be charged under unfair or deceptive trade practices. An
+education and outreach program will also be created to educate
+retailers, producers, and consumers about the requirements. A complaint
+forum to report unfair or deceptive practices will allow any person to
+report a violation. To increase the economic viability of organic
+material and internalize externalities, government intervention is
+necessary. The General Assembly should pass SB23-253.</p>
+</div>
+<div id="works-cited" class="section level3">
+<h3>Works Cited</h3>
+<p>A1. “A Message from A1 Organics, Colorado’s Leading Organics
+Recycler.” A1 Organics, 27 Feb. 2023, <a
+href="https://a1organics.com/wp-content/uploads/2023/02/A1-Organics-NEWS-RELEASE-Changes-in-the-SSO-Stream-Fin.pdf"
+class="uri">https://a1organics.com/wp-content/uploads/2023/02/A1-Organics-NEWS-RELEASE-Changes-in-the-SSO-Stream-Fin.pdf</a>.
+CPR. “Colorado struggles to keep organic waste out of the dump.” CPR
+News, Sam Brasch, Sep. 14, 2022, <a
+href="https://www.cpr.org/2022/09/14/colorado-composting-landfills/"
+class="uri">https://www.cpr.org/2022/09/14/colorado-composting-landfills/</a>.
+Cloud. “Report: What it will take for CEOs to fund a sustainable
+transformation”, Google Cloud, Apr. 13, 2022, Justin Keeble, <a
+href="https://cloud.google.com/blog/topics/sustainability/new-survey-reveals-executives-views-about-sustainability"
+class="uri">https://cloud.google.com/blog/topics/sustainability/new-survey-reveals-executives-views-about-sustainability</a>.
+EPA. “Composting At Home.” Environmental Protection Agency, 22
+Nov. 2022, <a href="https://www.epa.gov/recycle/composting-home#"
+class="uri">https://www.epa.gov/recycle/composting-home#</a>:~:text=Improves%20the%20structure%20and%20health,the%20potential%20for%20soil%20erosion.
+EPA1. “Basic Information about Landfill Gas.” United States
+Environmental Protection Agency, 2023, <a
+href="https://www.epa.gov/lmop/basic-information-about-landfill-gas#methane"
+class="uri">https://www.epa.gov/lmop/basic-information-about-landfill-gas#methane</a>.
+EPA2. “The Sources and Solutions: Agriculture.” United States
+Environmental Protection Agency, 2022, <a
+href="https://www.epa.gov/nutrientpollution/sources-and-solutions-agriculture#"
+class="uri">https://www.epa.gov/nutrientpollution/sources-and-solutions-agriculture#</a>:~:text=Excess%20nutrients%20can%20cause%20harmful,nutrient%20losses%20to%20the%20air.
+NRDC. “Composting 101.” Natural Resource Defense Council, Shelia Hu, 20
+July 2020, <a href="https://www.nrdc.org/stories/composting-101#whatis"
+class="uri">https://www.nrdc.org/stories/composting-101#whatis</a>.
+RecycleCO. “Colorado’s waste diversion goals- Can composting get us
+there?” Recycle Colorado, Amy Randell, July 28, 2022. <a
+href="https://www.recyclecolorado.org/index.php?option=com_dailyplanetblog&amp;view=entry&amp;year=2020&amp;month=07&amp;day=27&amp;id=77:colorado-s-waste-diversion-goals-can-composting-get-us-there-"
+class="uri">https://www.recyclecolorado.org/index.php?option=com_dailyplanetblog&amp;view=entry&amp;year=2020&amp;month=07&amp;day=27&amp;id=77:colorado-s-waste-diversion-goals-can-composting-get-us-there-</a>.
+SB. “Majority of US Consumers Say They Will Pay More for Sustainable
+Products” Sustainable Brands, 29 Aug, 2022, <a
+href="https://sustainablebrands.com/read/marketing-and-comms/majority-of-us-consumers-say-they-will-pay-more-for-sustainable-products"
+class="uri">https://sustainablebrands.com/read/marketing-and-comms/majority-of-us-consumers-say-they-will-pay-more-for-sustainable-products</a>.
+SFGATE. “Are Biodegradable Materials More Expensive?” SFGATE, <a
+href="https://homeguides.sfgate.com/gardening-gifts-plant-lovers-13771630.html"
+class="uri">https://homeguides.sfgate.com/gardening-gifts-plant-lovers-13771630.html</a>.</p>
+<p><br></p>
+</div>
+</div>
+<div id="hb23-1080-economic-analysis" class="section level1">
+<h1>HB23-1080 Economic Analysis</h1>
+<div id="section-1" class="section level3">
+<h3>03/15/2023</h3>
+</div>
+<div id="bill-overview-1" class="section level3">
+<h3>Bill Overview</h3>
+<p>Section 1 of HB23-1080, Affordable and Reliable Alternative Energy
+Act, implements a feasibility study of small modular reactors in
+Colorado. The bill aims to reduce the negative externalities associated
+with carbon dioxide emissions by introducing a new carbon-free, nuclear
+energy source.</p>
+<p>Section 1 of the bill specifies the evaluation of State law
+modifications, economic feasibility, safety, and tax effects. The study
+will be given $250,000 from the General Fund towards implementation for
+the 2023-24 State fiscal year.</p>
+</div>
+<div id="carbon-emission-externalities" class="section level3">
+<h3>Carbon Emission Externalities</h3>
+<p>Carbon-based fossil fuels such as oil, coal, and gas are all major
+energy sources in the U.S. (Ritchie). These fossil fuels require
+invasive extractions and emit carbon dioxide when burned. A negative
+externality is a result that inconveniences or hurts others as a
+byproduct of someone’s market transaction operations. Externalities
+arise throughout the process of generating power, beginning with the
+extraction of fossil fuels.</p>
+<p>Coal extraction requires strip mining or underground mining
+(Denchak). Oil and gas are typically taken from underground reservoirs
+by drilling on land or at sea. These techniques of extraction are
+destructive to the ecosystems because of complete uprooting of the land,
+pollution, and water toxicity. Wildlife, as a result, have less access
+to land used for resources, breeding, and migration. Additionally, waste
+from extraction that ends up in our water supply contains heavy metals
+and radioactive materials. These pollutants are linked to health issues
+such as cancer, birth defects, and neurological damage (Denchak).</p>
+<p>Once the fossil fuels are burned, carbon dioxide emissions trap heat
+in our atmosphere. This contributes to global warming (Denchak).
+Breathing pollutants from carbon-based fuel can lead to short-term and
+long-term health problems. Studies have linked these pollutants to early
+death, respiratory disorders, strokes, asthma and other diseases
+(Harvard).</p>
+</div>
+<div id="nuclear-power-benefits" class="section level3">
+<h3>Nuclear Power Benefits</h3>
+<p>Nuclear power does not emit carbon dioxide. Instead it is powered by
+nuclear fission. Fission is the process of repeatedly splitting the
+nucleus of an atom into smaller nuclei. There is a release of heat and
+radiation during the splitting and the heat can be converted to
+electricity (ONE4).</p>
+<p>The fission process makes nuclear energy a constant and reliable
+source of power. The design of nuclear power plants allow operations for
+one to two years before refueling. These plants do not require as much
+maintenance as coal and natural gas facilities. This allows nuclear
+energy to be supplied in extreme weather events or when pandemics limit
+human access (ONE4).</p>
+<p>There is also an argument to be made that nuclear energy is not only
+more reliable, but also safer than other energy sources. When
+calculating safety, a study used deaths in the workplace of power
+generating plants and premature death as a result of air pollution to
+draw comparisons. The death rates for workplace accidents and air
+pollution are measured by deaths per unit of electricity produced (per
+terawatt-hour). The death rates for coal and brown coal are 57.3, 18.43
+for oil, 2.8 for gas, and 0.03 for nuclear (Ritchie). Fossil fuels have
+much higher death rates than nuclear energy.</p>
+</div>
+<div id="nuclear-waste-externalities" class="section level3">
+<h3>Nuclear Waste Externalities</h3>
+<p>The waste that remains after nuclear fuel is spent is a major
+drawback. In the U.S. 2,000 metric tonnes of nuclear waste are created
+annually. This is a major externality of nuclear power. The U.S. has
+accumulated more than 88,000 metric tons of low to high radioactive
+levels of waste (Shwartz). The low to medium radiation level waste
+initially accumulates in concrete spent fuel pools at the nuclear sites
+themselves. After a year, the waste can be put into steel cylinders
+called dry casts that provide a leak-tight confinement for the radiation
+(NRC).</p>
+<p>Alternatively, the spent nuclear fuel with high levels of radiation
+is sent to geologic deposits. There is a nuclear waste repository site
+at Yucca Mountain Nevada. The site will reach capacity by 2036 and can
+pose a vulnerability in terms of national security (Ford).</p>
+<p>The Waste Isolation Pilot Plant is another waste repository that is
+located underground in New Mexico. There are deep salt beds that can
+isolate the radioactive wastes making the geographic composition of the
+area uniquely suitable for radioactive material. However, this plant is
+restricted to defense-generated waste (WIPP).</p>
+<p>Currently waste management technology such as dry casts have been
+made specifically for light-water reactors, or LWRs, which are
+gigawatt-scale nuclear reactors. The only commercial nuclear reactors in
+the U.S. currently are LWRs (ONE2).</p>
+<p>Small modular nuclear reactors, or SMRs, currently produce less than
+300 MW of electricity, and have been undergoing research (ONE2). SMR
+waste streams have significantly different radioactive chemical
+compositions from existing reactors. Many SMR waste streams have high
+concentrations of radioactive elements such as plutonium and uranium.
+SMRs will pose a challenge in finding a new waste storage approach.
+Their waste stream is more corrosive and radioactive than that of LMRs.
+Consequently, LMR storage methods would not be adequate (Krall).</p>
+</div>
+<div id="administrative-actions-1" class="section level3">
+<h3>Administrative Actions</h3>
+<p>The extensive externalities generated by carbon-based fuels require
+government intervention to reduce them. SMRs have the potential to be a
+reliable substitute if they are researched further because the
+externalities of burning carbon-based fuel can outweigh the
+externalities of nuclear spent waste. This bill should be passed. The
+focus of the study should primarily be on Part III (waste research and
+safety) of the bill. SMR waste management research is vital for this
+bill since nuclear waste also poses negative externalities.</p>
+</div>
+<div id="conclusion" class="section level3">
+<h3>Conclusion</h3>
+<p>Burning fossil fuel such as oil, coal, and gas releases carbon
+dioxide into our atmosphere. This bill aims to reduce carbon emissions
+by increasing nuclear power in the energy market. Nuclear power, if
+implemented correctly, has major health and environmental benefits. If
+this bill were to be implemented, it would provide a better
+understanding of how to achieve a carbon-free energy system. The General
+Assembly should pass HB23-1080.</p>
+</div>
+<div id="works-cited-1" class="section level3">
+<h3>Works Cited</h3>
+<p>Denchak, Melissa. “Fossil Fuels: The Dirty Facts.” NRDC, 1 June 2022,
+<a href="https://www.nrdc.org/stories/fossil-fuels-dirty-facts"
+class="uri">https://www.nrdc.org/stories/fossil-fuels-dirty-facts</a>.
+Ford, Aaron. “The Fight Against Yucca Mountain.” Nevada Attorney General
+Office, <a href="https://ag.nv.gov/Hot_Topics/Issue/Yucca/"
+class="uri">https://ag.nv.gov/Hot_Topics/Issue/Yucca/</a>. Harvard.
+“Fossil Fuels &amp; Health” Harvard T.H. Chan School of Public Health,
+<a
+href="https://www.hsph.harvard.edu/c-change/subtopics/fossil-fuels-health/#"
+class="uri">https://www.hsph.harvard.edu/c-change/subtopics/fossil-fuels-health/#</a>:~:text=But%20burning%20them%20creates%20climate,spectrum%20disorder%20and%20Alzheimer’s%20disease.
+Krall, Lindsay, et al. “Nuclear Waste from Small Modular Reactors .”
+PNAS, 31 May 2022, <a
+href="https://www.pnas.org/doi/10.1073/pnas.2111833119"
+class="uri">https://www.pnas.org/doi/10.1073/pnas.2111833119</a>. NRC.
+“Dry Cask Storage” United States Nuclear Regulatory Commission, 09 Jan
+2023, <a
+href="https://www.nrc.gov/waste/spent-fuel-storage/dry-cask-storage.html"
+class="uri">https://www.nrc.gov/waste/spent-fuel-storage/dry-cask-storage.html</a>.
+ONE1. “Infographic: How Much Power Does a Nuclear Reactor Produce?”
+Energy.gov, Office of Nuclear Energy, 31 Mar. 2021, <a
+href="https://www.energy.gov/ne/articles/infographic-how-much-power-does-nuclear-reactor-produce"
+class="uri">https://www.energy.gov/ne/articles/infographic-how-much-power-does-nuclear-reactor-produce</a>.
+ONE2. “Nuclear 101: How Does a Nuclear Reactor Work?” Energy.gov, Office
+of Nuclear Energy, 29 Mar. 2021, <a
+href="https://www.energy.gov/ne/articles/nuclear-101-how-does-nuclear-reactor-work"
+class="uri">https://www.energy.gov/ne/articles/nuclear-101-how-does-nuclear-reactor-work</a>.
+ONE3. “Advantages and Challenges of Nuclear Energy.” Energy.gov, Office
+of Nuclear Energy, 29 Mar. 2021, <a
+href="https://www.energy.gov/ne/articles/advantages-and-challenges-nuclear-energy#"
+class="uri">https://www.energy.gov/ne/articles/advantages-and-challenges-nuclear-energy#</a>:~:text=The%20nuclear%20industry%20supports%20nearly,higher%20than%20the%20local%20average.
+ONE4. “Nuclear Power is the Most Reliable Energy Source and It’s Not
+Even Close” Energy.gov, Office of Nuclear Energy, 24 Mar. 2021, <a
+href="https://www.energy.gov/ne/articles/nuclear-power-most-reliable-energy-source-and-its-not-even-close"
+class="uri">https://www.energy.gov/ne/articles/nuclear-power-most-reliable-energy-source-and-its-not-even-close</a>.
+Ritchie, Hannah. “What Are the Safest and Cleanest Sources of Energy?”
+Our World in Data, 10 Feb. 2020, <a
+href="https://ourworldindata.org/safest-sources-of-energy"
+class="uri">https://ourworldindata.org/safest-sources-of-energy</a>.
+Shwartz, Mark. “Small Modular Reactors Produce High Levels of Nuclear
+Waste.” Stanford News, Stanford University, 20 June 2022, <a
+href="https://news.stanford.edu/2022/05/30/small-modular-reactors-produce-high-levels-nuclear-waste/#"
+class="uri">https://news.stanford.edu/2022/05/30/small-modular-reactors-produce-high-levels-nuclear-waste/#</a>:~:text=Small%20modular%20reactors%2C%20long%20touted,the%20University%20of%20British%20Columbia.
+USDE. “Missouri University Research Reactor Site Fact Sheet.” U.S.
+Department of Energy, Aug. 2021, <a
+href="https://www.energy.gov/sites/default/files/2021-08/MURRFactSheet.pdf"
+class="uri">https://www.energy.gov/sites/default/files/2021-08/MURRFactSheet.pdf</a>.
+WIPP. “WIPP information.” U.S. Department of Energy’s Waste Isolation
+Pilot Plant, <a href="https://wipp.energy.gov/wipp-site.asp"
+class="uri">https://wipp.energy.gov/wipp-site.asp</a>.</p>
+<p><br></p>
+</div>
+</div>
+<div id="hb23-1075-economic-analysis" class="section level1">
+<h1>HB23-1075 Economic Analysis</h1>
+<div id="section-2" class="section level3">
+<h3>02/07/2023</h3>
+</div>
+<div id="bill-overview-2" class="section level3">
+<h3>Bill Overview</h3>
+<p>HB23 1075 requires the Office of Emergency Management (OEM) to inform
+Colorado homeowners of evacuation and wildfire services. The resources
+would be posted on an interactive website with an evacuation and
+clearance time model that simulates a road network with closures, and
+traffic delays due to the fire. These models typically test many
+different route scenarios with hazard considerations to find the most
+effective one. OEM would not only provide the evacuation and clearance
+time model, but would also give contacts for receiving help, and
+information on individual safety in a consolidated format.</p>
+<p>Section 2 of the bill addresses updating models for existing
+developments. The developer will provide the information to the local
+government to approve and implement.</p>
+</div>
+<div id="intention-of-bill" class="section level3">
+<h3>Intention of Bill</h3>
+<p>OEM will collaborate with local agencies to provide the technical
+assistance for making the evacuation and clearance time model and
+interactive website. Once the model is completed the OEM and other local
+and State Agencies will inform the public of its existence.</p>
+<p>Public goods are services administered by the government and paid for
+by taxes. The goods are non-rival and non-excludable, so they do not
+have a limited supply and are available to all citizens. This model
+cannot be exhausted by other evacuators’ use of it. However, this model
+is a local public good rather than a pure public good because it is only
+available to vulnerable areas, and only useful for the area it was
+modeled after. Each area gets their own evacuation plan in the context
+of that area’s transportation network.</p>
+<p>The economic intention of HB23 1075 is to provide a local public
+good. The website provides people living in high wildfire risk areas
+with an emergency plan specific to their home to optimize evacuation
+time.</p>
+</div>
+<div id="analysis-on-current-fire-evacuation-practices"
+class="section level3">
+<h3>Analysis on Current Fire Evacuation Practices</h3>
+<p>People caught in a wildfire scenario have multiple ways of gathering
+information about the evacuation. At this time, the official site for
+updates is provided by the OEM. The emergency status page provides a
+link to a public information map that shows road closures and limited
+access areas. However the map is not interactive. Therefore setting a
+destination to get alternate routes is not an option. The bill would not
+only give an alternate route, but also the clearance time for a
+homeowner’s address.</p>
+<p>Emergency and shelter contacts cannot be found directly on the
+current OEM sites. As people are focussed on fleeing, they also are
+forced to search the internet for the right number to call to find
+safety. The Red Cross is typically the wanted source, a number that
+cannot be found on the local OEM sites. Some numbers often called are
+the evacuation shelters themselves. When East and North Boulder
+Recreation Centers open as evacuation shelters the staff are asked
+questions they are not prepared to answer (COB). Calls become jammed,
+and are typically redirected. The bill provides information on how to
+receive and locate evacuation information in proximity to your address,
+reducing confusion, stress, and wasted time from calling wrong
+numbers.</p>
+</div>
+<div id="public-goods-and-costs" class="section level3">
+<h3>Public Goods and Costs</h3>
+<p>A study done on natural disasters showed some evacuation variables
+that were most significant to an effective procedure were: if an
+emergency operations center was used, time to complete the evacuation,
+and the level of community awareness regarding the alerting methods
+(Dotson). The bill optimizes each of these variables. HB23 1075 requires
+OEM as the emergency operations center, a clearance time model, and an
+outreach and education campaign. This bill will optimize the most
+significant predictors of an effective evacuation.</p>
+<p>The impacts from people evacuating inefficiently delays and impedes
+the evacuations of others. A less efficient evacuation route will
+congest roads and slow down emergency responders. Providing this local
+public good will reduce negative externalities caused by inefficient
+evacuations.</p>
+<p>Public health impacts are also an externality of poor evacuations.
+Individuals may be harmed both short and long term by exposure to smoke
+and ash. The potential loss of life is also one of the greatest
+externalities of a faulty evacuation. A clearance time model that can
+reduce exposure to wildfires has the potential to decrease the
+likelihood of these externalities.</p>
+</div>
+<div id="recommendations" class="section level3">
+<h3>Recommendations</h3>
+<p>The General Assembly should approve this bill. Where the marginal
+social benefit equals marginal social cost is the efficient point of
+local goods purchased. The public’s enhanced safety outweighs the costs
+of the evacuation and time clearance model. There is not an exact dollar
+amount of how much this bill will save the government. Since
+quantification is not readily available this evaluation has led to the
+conclusion that in the event of a wildfire this resource allows
+individuals to evacuate efficiently, therefore reducing both public
+costs and negative externalities.</p>
+<p>The net benefits of providing this resource should exceed the costs
+of building it, since it is worthwhile to protect the public in a manner
+that encourages them to do more on their own. When people are correctly
+informed on evacuation measures, evacuations are executed more
+successfully.</p>
+</div>
+<div id="conclusion-1" class="section level3">
+<h3>Conclusion</h3>
+<p>In times of panic and quick decisions, a single resource that
+consolidates all information needs to be accessible for homeowners and
+emergency responders to save time. The clearance time model will reduce
+both public costs and externalities and increase welfare and health by
+practicing more efficient evacuations. The reduction in costs of public
+safety and health likely exceeds the cost of an evacuation model so the
+General Assembly should be in favor of HB23 1075.</p>
+</div>
+<div id="works-cited-2" class="section level3">
+<h3>Works Cited</h3>
+<p>Bihari, Menka, and Robert Ryan. “Influence of Social Capital on
+Community Preparedness for Wildfires.” Landscape and Urban Planning,
+Elsevier, 18 Apr. 2012, <a
+href="https://www.sciencedirect.com/science/article/pii/S0169204612000989"
+class="uri">https://www.sciencedirect.com/science/article/pii/S0169204612000989</a>.
+Dotson, Jones, et al. Identification and Analysis of Factors Affecting
+Emergency Evacuations. Division of Preparedness and Response Office of
+Nuclear Security and Incident Response, <a
+href="https://www.nrc.gov/docs/ML0502/ML050250245.pdf"
+class="uri">https://www.nrc.gov/docs/ML0502/ML050250245.pdf</a>. COB,
+“Emergency Preparedness” City of Boulder, <a
+href="https://bouldercolorado.gov/guide/emergency-preparedness"
+class="uri">https://bouldercolorado.gov/guide/emergency-preparedness</a>.
+OEM, “Map of Evacuation and Pre-Evacuation Areas.” Boulder OEM, 17
+Oct. 2020, <a
+href="https://www.boulderoem.com/map-of-evacuation-and-pre-evacuation-areas/"
+class="uri">https://www.boulderoem.com/map-of-evacuation-and-pre-evacuation-areas/</a>.
+Quinton, Sophie. “As Wildfire Risk Increases, Home Insurance Is Harder
+to Find.” The Pew Charitable Trusts, 3 Jan. 2019, <a
+href="https://www.pewtrusts.org/en/research-and-analysis/blogs/stateline/2019/01/03/as-wildfire-risk-increases-home-insurance-is-harder-to-find"
+class="uri">https://www.pewtrusts.org/en/research-and-analysis/blogs/stateline/2019/01/03/as-wildfire-risk-increases-home-insurance-is-harder-to-find</a>.
+Rosen, Harvey S., and Ted Gayer. Public Finance. McGraw-Hill Education,
+2010. Swallow, S., and A. Shafran. “The Social Costs of Homeowner
+Decisions in Fire-Prone Communities: Information, Insurance, and
+Amenities.” Ecological Economics, Elsevier, 3 Apr. 2013, <a
+href="https://www.sciencedirect.com/science/article/pii/S0921800913000803"
+class="uri">https://www.sciencedirect.com/science/article/pii/S0921800913000803</a>.</p>
+<p><br></p>
+</div>
+</div>
+<div id="hb23-1201-economic-analysis" class="section level1">
+<h1>HB23-1201 Economic Analysis</h1>
+<div id="section-3" class="section level3">
+<h3>05/04/2023</h3>
+</div>
+<div id="bill-overview-3" class="section level3">
+<h3>Bill Overview</h3>
+<p>HB23-1201 requires that the amount charged by an insurance or
+pharmaceutical benefit manager (PBM) to the employer, certificate
+holder, or policyholder for a prescription drug is less than or equal to
+the amount paid by the PBM to the contracted pharmacy for the drug.</p>
+<p>This paper will refer to any entity negotiating on behalf of
+employers, such as health insurance carriers or pharmacy benefit
+managers, as “PBMs.” Employers, certificate holders, or policyholders
+are all entities that employ the PBMs. PBMs are hired to negotiate drug
+prices on their behalf for a health plan, such as health benefits that a
+company sponsors on behalf of its workers. This paper will refer to
+these entities as “employers” since they are employers, policyholders,
+or certificate holders negotiating on behalf of their employees that
+receive the health plan benefits.</p>
+</div>
+<div id="pbms-function-to-employers" class="section level3">
+<h3>PBM’s Function to Employers</h3>
+<p>When a new drug is available, the manufacturer sells the drug to
+wholesalers. The drugs are then distributed and sold from the
+wholesalers to the pharmacies. PBMs negotiate with drug manufacturers on
+behalf of employers and are paid rebates by the manufacturers. Rebates
+are a partial return of the drug price (the price the wholesalers pays
+to the manufacturers) to the PBMs who pass some or all of it through to
+the employers (NAIC).</p>
+</div>
+<div id="pbm-traditional-income-model" class="section level3">
+<h3>PBM Traditional Income Model</h3>
+<p>The traditional PBM uses price spreading as its source of income
+(Navitus). The spread price is the difference between what PBMs charge
+to the employers and what the PBM pays the pharmacy. The PBM keeps the
+difference as income. The difference is referred to as “cost back.”</p>
+<p>A hypothetical spread pricing model would go as follows; the pharmacy
+charges $10 to dispense a drug, and the cost back is $5. The charge the
+employer sees for the PBM’s service and the drug is $15. The employer
+does not see the pharmacy price to dispense the drug or what the PBM is
+earning, only the total cost.</p>
+<p>This traditional model can potentially make an effective PBM in terms
+of lowering drug prices for employers. This is due to the PBM’s income
+being dependent on the rebate (Navitus). The traditional PBM model often
+includes a guaranteed safety net of the price employers pay for
+dispensed drugs. The dispensed drug price is guaranteed because
+traditional PBMs have fluctuating incomes that are dependent on the
+rebate they negotiate. The employer may favor PBM’s income dependency
+and a constant, guaranteed drug price since the employer would have low
+risk of fluctuating drug prices.</p>
+<p>This bill prevents price spreading by restricting PBMs from charging
+employers more than the amount paid by the PBM to the contracted
+pharmacy for the drug. Therefore the traditional PBM model would be
+banned, and employers would not have a choice to hire a PBM that can
+guarantee a safety net drug price.</p>
+</div>
+<div id="pbm-pass-through-income-model" class="section level3">
+<h3>PBM Pass-Through Income Model</h3>
+<p>The pass-through PBM is an alternative income and pricing model an
+employer may hire or negotiate. Pass-through PBMs earn their income by
+charging an administrative fee. Essentially the rebate from the drug
+manufacturer to the PBM is being “passed through” to the employer, and
+the PBM is paid an administrative fee.</p>
+<p>This is a completely transparent method of doing business. The
+employer is paying the same amount paid by the PBM to the contracted
+pharmacy for the drug plus an additional fee. The employer is then aware
+of the pharmacy drug cost and exactly how much the PBM is earning from
+the transaction (Araya).</p>
+<p>A hypothetical pass-through model would look like the following; a
+pharmacy charge to dispense the drug would be listed as $10. There would
+be a negotiated administration fee of $5 fee. The total charge the
+employer pays is $10 + $5.</p>
+</div>
+<div id="pbm-hybrid-income-model" class="section level3">
+<h3>PBM Hybrid Income Model</h3>
+<p>Hybrid PBMs exist too. They are a combination of pass-through and
+traditional models. They generate some revenue from spread pricing but
+pass through a larger portion than the traditional model. To make up
+some of the revenue, they have administration fees associated with their
+income as well (Araya).</p>
+</div>
+<div id="administrative-actions-2" class="section level3">
+<h3>Administrative Actions</h3>
+<p>As of 2022, there are 66 PBM companies, some of which are
+pass-through PBMs (NAIC). CVS Caremark is an example of a PBM company
+that uses the pass-through model. They are one of the largest PBM
+businesses with 34% of the PBM market (MHE).</p>
+<p>Employers voluntarily enter agreements with PBMs. If an employer
+wants a transparent PBM, they can negotiate with a hybrid PBM, or go to
+a pass-through PBM like CVS Caremark. Employers that choose to hire PBMs
+that use the traditional model have so voluntarily, in an environment
+where alternatives are readily available. Therefore, there is no reason
+for government intervention.</p>
+<p>If the ultimate purpose of this bill is to lower dispensed drug
+prices for covered individuals, legislation that enforces laws against
+systematic exploitation would be more beneficial than HB23-1201.</p>
+<p>Systematic exploitation may be explained by PBM’s potential ability
+to write biased formularies. Formularies are a list of prescription
+drugs that are covered under a patient’s health plan and that have been
+deemed safe by a PBM and a pharmacy and therapeutics committee (AMCP).
+The higher a drug is ranked on formularies, the more likely a physician
+is to prescribe that drug. Therefore manufacturers aim for high ranking
+on formularies in order to increase their drug sales (AMCP).
+Additionally, PBMs that have the goal of increasing their earnings would
+favor expensive drugs so they can receive a high rebate. Drug
+manufacturers have claimed that dispensed drugs are expensive because
+the high rebates that PBMs charge manufacturers have forced them to
+raise their prices to wholesalers (CW).</p>
+<p>If PBMs have power with formulary ranking, to the point that they are
+able to exploit drug manufacturers, then the government should
+intervene. However, since there is no exploitation of employers because
+employers voluntarily hire PBMs, HB23-1201 should not be passed.</p>
+</div>
+<div id="works-cited-3" class="section level3">
+<h3>Works Cited</h3>
+<p>AMCP. “Formulary Management”. AMCP, July, 2019. <a
+href="https://www.amcp.org/about/managed-care-pharmacy-101/concepts-managed-care-pharmacy/formulary-management"
+class="uri">https://www.amcp.org/about/managed-care-pharmacy-101/concepts-managed-care-pharmacy/formulary-management</a>
+Araya. “PBM Spread Pricing Explained”. Araya, David Barrington, Mar. 25,
+2022. <a href="https://arayarx.com/pbm-spread-pricing-explained/#"
+class="uri">https://arayarx.com/pbm-spread-pricing-explained/#</a>:~:text=PBM%20spread%20pricing%20can%20be,spread.
+CHI. “Pharmacy Benefit Managers”. Colorado Health Institute, Ian Pelto,
+Aug. 28, 2018. <a
+href="https://www.coloradohealthinstitute.org/sites/default/files/file_attachments/Pharmacy%20Benefit%20Managers.pdf"
+class="uri">https://www.coloradohealthinstitute.org/sites/default/files/file_attachments/Pharmacy%20Benefit%20Managers.pdf</a>.
+CW. “Pharmacy Benefit Managers and Their Role in Drug Spending”.
+Commonwealth Fund, Apr. 22, 2019. <a
+href="https://www.commonwealthfund.org/publications/explainer/2019/apr/pharmacy-benefit-managers-and-their-role-drug-spending"
+class="uri">https://www.commonwealthfund.org/publications/explainer/2019/apr/pharmacy-benefit-managers-and-their-role-drug-spending</a>
+FHC “CVS Caremark shifts PBM model to 100% pass-through pricing and
+focus on net cost”. Fierce Healthcare, Evan Sweeney, Dec, 2018. <a
+href="https://www.fiercehealthcare.com/payer/cvs-caremark-launches-guaranteed-pbm-model-100-pass-through-pricing"
+class="uri">https://www.fiercehealthcare.com/payer/cvs-caremark-launches-guaranteed-pbm-model-100-pass-through-pricing</a>
+MHE. “Beyond the Big Three PBMs”. Managed Healthcare Executive, Denise
+Myshko, Dec, 2022. <a
+href="https://www.managedhealthcareexecutive.com/view/beyond-the-big-three-pbms"
+class="uri">https://www.managedhealthcareexecutive.com/view/beyond-the-big-three-pbms</a>
+Navitus. “Pharmacy Benefit News, Information and Expert Analysis”
+Navitus Health Solutions, Oct 21, 2021. <a
+href="https://blog.navitus.com/pbm-models-and-need-to-know-definitions-1"
+class="uri">https://blog.navitus.com/pbm-models-and-need-to-know-definitions-1</a>.
+NAIC. “Pharmacy Benefit Managers” Center for Insurance Policy and
+Research, Apr, 2022. <a
+href="https://content.naic.org/cipr-topics/pharmacy-benefit-managers"
+class="uri">https://content.naic.org/cipr-topics/pharmacy-benefit-managers</a>
+Truveris. “How Does a PBM Impact the Pharmacy Benefits Ecosystem”
+Truveris, Feb 17, 2021. <a
+href="https://truveris.com/what-is-a-pharmacy-benefit-manager-pbm-and-how-does-a-pbm-impact-the-pharmacy-benefits-ecosystem/#"
+class="uri">https://truveris.com/what-is-a-pharmacy-benefit-manager-pbm-and-how-does-a-pbm-impact-the-pharmacy-benefits-ecosystem/#</a>:~:text=Pharmacy%20benefits%20managers%20increase%20a,pass%20on%20to%20their%20clients.</p>
+</div>
+</div>
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

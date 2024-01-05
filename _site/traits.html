@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Maelynn Terr" />
+
+<meta name="date" content="2023-08-17" />
+
+<title>Using the Big Five Personality Traits to Predict Wealth</title>
+
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Maelynn Terr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="election.html">Election Maps</a>
+</li>
+<li>
+  <a href="regression.html">Global Wage Regression Model</a>
+</li>
+<li>
+  <a href="bills.html">Bill Analyses</a>
+</li>
+<li>
+  <a href="traits.html">Personality Traits Regression</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Using the Big Five Personality Traits to
+Predict Wealth</h1>
+<h4 class="author">Maelynn Terr</h4>
+<h4 class="date">2023-08-17</h4>
+
+</div>
+
+
+<div id="project-overview" class="section level1">
+<h1>Project Overview</h1>
+<p>The big five personalities are traits that some researchers and
+psychologists use to characterize people. I will be using these big five
+traits to run predictions on which trait is most likely to impact
+wealth.</p>
+<p>This analysis will question, <em>The personality traits of self-made
+and inherited millionaires</em> study linked below. The authors and
+researchers of the study claim high conscientiousness is the most
+important characteristic of wealth success. However, this paper will
+argue that the most important characteristic of wealth success is
+actually low neuroticism.</p>
+<div id="link-to-criticized-study" class="section level3">
+<h3>Link to Criticized Study:</h3>
+<p><a href="https://www.nature.com/articles/s41599-022-01099-3"
+class="uri">https://www.nature.com/articles/s41599-022-01099-3</a></p>
+</div>
+</div>
+<div id="analysis-approach" class="section level1">
+<h1>Analysis Approach</h1>
+<p>A multiple linear regression model will be used to see which of the
+big five has the most statistical significance to wealth. In other
+words, a regression model will reveal which personality trait is the
+strongest predictor of wealth.</p>
+<p>This analysis takes data from a Life Psyche survey that was
+administered online to people getting paid to complete the survey.
+People put answer questions meant to rank their personality type. This
+analysis uses the sum of these questions as data points.</p>
+<p>The linear regression models will use the following
+<strong>predictors</strong> from the Life Psyche data set:</p>
+<ul>
+<li>ExtraversionSum</li>
+<li>AgreeabilitySum</li>
+<li>ConscientiousnessSum</li>
+<li>NeuroticismSum</li>
+<li>OpennessSum</li>
+</ul>
+<p>To predict the <strong>response</strong>:</p>
+<ul>
+<li>WealthSum</li>
+</ul>
+</div>
+<div id="visualizations" class="section level1">
+<h1>Visualizations</h1>
+<div id="conscientousness-vs-wealth" class="section level3">
+<h3>Conscientousness vs Wealth</h3>
+<p><img src="traits_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" />
+Fig. 1</p>
+</div>
+<div id="neuroticism-vs-wealth" class="section level3">
+<h3>Neuroticism vs Wealth</h3>
+<p><img src="traits_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" />
+Fig. 2</p>
+<p>Figures 1 and 2 are constructed as scatterplots. The scatterplots
+have points dispersed using “jitter” in ggplot. This is due to the
+survey questions using discrete rankings rather than a continuous scale.
+The jitter function allows us to see how many points are congregated.
+Secondly, there is a stem plot to gauge where the majority of points
+lie. Finally, the color of the points indicate a person’s intelligence,
+measured by math and English SAT scores.</p>
+<p>In figure 2 the density of the congregated points show that as
+neuroticism decreases, wealth increases. The opposite goes for
+conscientiousness. In figure 1 as conscientiousness decreases, wealth
+increases.</p>
+<p>From the two scatterplots there is not enough differentiation to see
+whether neuroticism or conscientiousness is most correlated to wealth.
+<strong>From the plots alone, we do not have the justification to prove
+that neuroticism is a higher indicator of wealth than
+consciousness.</strong></p>
+</div>
+<div id="test-data" class="section level2">
+<h2>Test Data</h2>
+<p>The regression will first be run using 30% of the data as a test set.
+This is a sample size of 859 observations. Eventually, it will be tested
+against the other 70% (2,003 observations) of the data set. These 2,003
+observations are refered to as the training set. This method of
+splitting the data will verify the results. If the two sets of data that
+do not share any of the same responses have the same p-value rankings,
+then we can most likely trust our analysis.</p>
+</div>
+<div id="multiple-linear-regression-model" class="section level2">
+<h2>Multiple Linear Regression Model</h2>
+<p>A regression model is useful in this scenario since conscientiousness
+is correlated with wealth in a positive direction whereas neuroticism is
+correlated with wealth in a negative direction.</p>
+<p>We will be using the big five as predictors, and wealth as response
+for the model. Based on the p-value the big five can be rated from
+strongest correlation to wealth, to weakest.</p>
+<pre><code>## 
+## Call:
+## lm(formula = WealthSum ~ ExtraversionSum + AgreeabilitySum + 
+##     ConscientiousnessSum + NeuroticismSum + OpennessSum, data = bigFive_test)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8438 -0.6972  0.2225  0.7596  2.1791 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           2.97442    0.35968   8.270 5.27e-16 ***
+## ExtraversionSum      -0.01243    0.01479  -0.840  0.40099    
+## AgreeabilitySum      -0.01617    0.01685  -0.959  0.33764    
+## ConscientiousnessSum  0.04924    0.01608   3.063  0.00226 ** 
+## NeuroticismSum       -0.06028    0.01432  -4.210 2.83e-05 ***
+## OpennessSum          -0.03168    0.01505  -2.105  0.03556 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.069 on 836 degrees of freedom
+##   (17 observations deleted due to missingness)
+## Multiple R-squared:  0.06214,    Adjusted R-squared:  0.05654 
+## F-statistic: 11.08 on 5 and 836 DF,  p-value: 2.378e-10</code></pre>
+<p>Fig. 3</p>
+<p>Figure 3 is a regression model that uses all big five personality
+traits to predict wealth.</p>
+<p>The strongest correlated variables to wealth:</p>
+<ol style="list-style-type: decimal">
+<li>Neuroticism</li>
+<li>Conscientiousness</li>
+<li>Openness</li>
+<li>Agreeability</li>
+<li>Extraversion</li>
+</ol>
+<p>Neuroticism is the best predictor of wealth. It is a better predictor
+than conscientiousness. Therefore we can reject the study
+<em>Personality traits of self-made and inherited millionaires</em>
+.</p>
+</div>
+</div>
+<div id="testing-reliability" class="section level1">
+<h1>Testing Reliability</h1>
+<pre><code>## 
+## Call:
+## lm(formula = WealthSum ~ ExtraversionSum + AgreeabilitySum + 
+##     ConscientiousnessSum + NeuroticismSum + OpennessSum, data = bigFive_test)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8438 -0.6972  0.2225  0.7596  2.1791 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           2.97442    0.35968   8.270 5.27e-16 ***
+## ExtraversionSum      -0.01243    0.01479  -0.840  0.40099    
+## AgreeabilitySum      -0.01617    0.01685  -0.959  0.33764    
+## ConscientiousnessSum  0.04924    0.01608   3.063  0.00226 ** 
+## NeuroticismSum       -0.06028    0.01432  -4.210 2.83e-05 ***
+## OpennessSum          -0.03168    0.01505  -2.105  0.03556 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.069 on 836 degrees of freedom
+##   (17 observations deleted due to missingness)
+## Multiple R-squared:  0.06214,    Adjusted R-squared:  0.05654 
+## F-statistic: 11.08 on 5 and 836 DF,  p-value: 2.378e-10</code></pre>
+<p>Fig. 4</p>
+<p>The regression model above (Figure 4) uses the other 70% of the data.
+The rankings of statistical significance, measured by the p-value, are
+the same as in Figure 3. This confirms that neuroticism is the best
+predictor of wealth.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>When we use both the plots and the regression model together, we get
+a much better understanding of the strength <strong>and</strong>
+direction of the correlation between wealth, neuroticism and
+consciensouness. In the study, <em>Personality traits of self-made and
+inherited millionaires</em>, the researchers are very close to being
+accurate. If the study were to adjust the text, to speak in terms of,
+“which variable is most <strong>positively</strong> correlated to
+wealth,” then the analysis would be correct.</p>
+<p>Ultimately, the strongest predictor of wealth is neuroticism.
+Therefore a person’s level of neuroticism is more significant to income
+than any other trait.</p>
+</div>
+<div id="extra-graphs-and-regression-models" class="section level1">
+<h1>Extra Graphs and Regression Models</h1>
+<div id="testing-normality" class="section level3">
+<h3>Testing Normality</h3>
+<p>The plot below uses the data from Figure 3 to test normality. In
+order to run an accurate prediction from a multiple linear regression
+model, the data must follow four assumptions. The assumptions necessary
+are linearity, independence, normality, and constant variance between
+the predictor and response.</p>
+<p><img src="traits_files/figure-html/unnamed-chunk-7-1.png" width="50%" /><img src="traits_files/figure-html/unnamed-chunk-7-2.png" width="50%" /><img src="traits_files/figure-html/unnamed-chunk-7-3.png" width="50%" /><img src="traits_files/figure-html/unnamed-chunk-7-4.png" width="50%" />
+Fig. 5</p>
+<p>These plots confirm that the data is in fact normally
+distributed.</p>
+</div>
+<div id="conscientouness-and-sat-scores-as-predictors-of-wealth"
+class="section level3">
+<h3>Conscientouness and SAT Scores as Predictors of Wealth</h3>
+<pre><code>## 
+## Call:
+## lm(formula = WealthSum ~ ConscientiousnessSum + SAT_MATH + SAT_ENG, 
+##     data = bigFive)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.9164 -0.6448  0.2362  0.6619  2.1516 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           1.0498259  0.1766777   5.942 3.47e-09 ***
+## ConscientiousnessSum  0.0599715  0.0091920   6.524 9.22e-11 ***
+## SAT_MATH              0.0014179  0.0002450   5.787 8.66e-09 ***
+## SAT_ENG              -0.0001236  0.0002695  -0.458    0.647    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.015 on 1549 degrees of freedom
+##   (1309 observations deleted due to missingness)
+## Multiple R-squared:  0.05705,    Adjusted R-squared:  0.05523 
+## F-statistic: 31.24 on 3 and 1549 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Fig. 6</p>
+</div>
+<div id="neuroticism-and-sat-scores-as-predictors-of-wealth"
+class="section level3">
+<h3>Neuroticism and SAT Scores as Predictors of Wealth</h3>
+<pre><code>## 
+## Call:
+## lm(formula = WealthSum ~ NeuroticismSum + SAT_MATH + SAT_ENG, 
+##     data = bigFive)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8245 -0.6280  0.2285  0.6531  2.1436 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     2.106e+00  1.647e-01  12.784  &lt; 2e-16 ***
+## NeuroticismSum -5.223e-02  7.655e-03  -6.823 1.27e-11 ***
+## SAT_MATH        1.390e-03  2.449e-04   5.677 1.63e-08 ***
+## SAT_ENG        -2.671e-05  2.690e-04  -0.099    0.921    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.014 on 1549 degrees of freedom
+##   (1309 observations deleted due to missingness)
+## Multiple R-squared:  0.05941,    Adjusted R-squared:  0.05759 
+## F-statistic: 32.61 on 3 and 1549 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Fig. 7</p>
+</div>
+<div
+id="conscientouness-neuroticism-and-sat-scores-as-predictors-of-wealth"
+class="section level3">
+<h3>Conscientouness, Neuroticism, and SAT Scores as Predictors of
+Wealth</h3>
+<pre><code>## 
+## Call:
+## lm(formula = WealthSum ~ NeuroticismSum + ConscientiousnessSum + 
+##     SAT_MATH + SAT_ENG, data = bigFive)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8300 -0.6488  0.1978  0.6651  2.1718 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           1.594e+00  2.256e-01   7.068 2.37e-12 ***
+## NeuroticismSum       -3.537e-02  9.175e-03  -3.855 0.000120 ***
+## ConscientiousnessSum  3.642e-02  1.100e-02   3.309 0.000956 ***
+## SAT_MATH              1.377e-03  2.441e-04   5.641 2.01e-08 ***
+## SAT_ENG              -7.754e-05  2.686e-04  -0.289 0.772886    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.011 on 1548 degrees of freedom
+##   (1309 observations deleted due to missingness)
+## Multiple R-squared:  0.06602,    Adjusted R-squared:  0.06361 
+## F-statistic: 27.36 on 4 and 1548 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Fig. 8</p>
+</div>
+</div>
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

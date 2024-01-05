@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Maelynn Terr" />
+
+<meta name="date" content="2020-12-11" />
+
+<title>2020 Presidential Election Maps</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Maelynn Terr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="election.html">Election Maps</a>
+</li>
+<li>
+  <a href="regression.html">Global Wage Regression Model</a>
+</li>
+<li>
+  <a href="blogs.html">Blogs</a>
+</li>
+<li>
+  <a href="bills.html">Bill Analyses</a>
+</li>
+<li>
+  <a href="traits.html">Personality Traits Regression</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">2020 Presidential Election Maps</h1>
+<h4 class="author">Maelynn Terr</h4>
+<h4 class="date">December 11, 2020</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>For my STAT 2600 project I created visuals for the 2020 Presidential
+Election: Trump vs. Biden. I thought it would be interesting to be able
+to make my own unbiased visuals in order to have a better understanding
+of the results this year. I found a data set that contained important
+election information such as county, state, and election votes in every
+county in the U.S. I eventually merged and cleaned data to match so I
+could see the election more precisely. I zoom into states that stand out
+to me and identify interesting patterns. This project focuses overall on
+the maps but still concludes with a big picture look as well as current
+events.</p>
+<div id="map-of-2020-presidential-election" class="section level2">
+<h2>Map of 2020 Presidential Election</h2>
+<pre class="r"><code>plot_usmap(data= democrat, values = &quot;ratio&quot;)+
+  labs(title = &quot;2020 Presidential Election Results&quot;)+
+  scale_fill_gradient2(high = (&quot;midnightblue&quot;), low = muted(&quot;red4&quot;), midpoint = .5)+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><strong>Map Details:</strong> <br> * The white states means the vote
+was almost 50 50. * The more blue the state is, the more people voted
+for Joe Biden. * The more red the state is, the more people voted for
+Donald Trump.</p>
+</div>
+<div id="map-of-2020-presidential-election-by-county"
+class="section level2">
+<h2>Map of 2020 Presidential Election by County</h2>
+<pre class="r"><code>plot_usmap(data= democrat_county, values = &quot;ratio&quot;)+
+  labs(title = &quot;2020 Presidential Election Results&quot;)+
+  scale_fill_gradient2(high = (&quot;midnightblue&quot;), low = muted(&quot;red4&quot;), midpoint = .5)+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<br> This map shows how each county in the United States voted.
+Immediately I am stunned because ultimately Joe Biden won the election,
+but a lot of red covers the map. I could have predicted this
+intuitively, but the degree of it is higher than expected.</p>
+</div>
+<div id="colorado-county-votes" class="section level2">
+<h2>Colorado County Votes</h2>
+<pre class="r"><code>plot_usmap(&quot;county&quot;,data=democrat_county, values = &quot;ratio&quot;, include = c(.mountain), exclude = c(&quot;AZ&quot;,&quot;ID&quot;,&quot;MT&quot;,&quot;NV&quot;,&quot;NM&quot;,&quot;UT&quot;,&#39;WY&#39;))+
+  labs(title = &quot;2020 Presidential Election Results Colorado&quot;)+
+  scale_fill_gradient2(high = (&quot;midnightblue&quot;), low = muted(&quot;red4&quot;), midpoint = .5)+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<br> This map shows how each county in Colorado voted. There is a lot of
+blue and red which demonstrates that Colorado is more of a swing state.
+55.4% of the vote went to Joe Biden, so Colorado was a blue state for
+this race.</p>
+</div>
+<div id="california-county-votes" class="section level2">
+<h2>California County Votes</h2>
+<pre class="r"><code>plot_usmap(&quot;county&quot;,data=democrat_county, values = &quot;ratio&quot;, include = c(.pacific), exclude = c(&quot;AK&quot;, &quot;HI&quot;, &quot;OR&quot;, &quot;WA&quot;))+
+  labs(title = &quot;2020 Presidential Election Results California&quot;)+
+  scale_fill_gradient2(high = (&quot;midnightblue&quot;), low = muted(&quot;red4&quot;), midpoint = .5)+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<br> This map shows how each county in California voted. Since
+California is a blue state it wasn’t surprising that most counties voted
+for Joe Biden in this election. 63.5% of the vote went to Joe Biden.</p>
+</div>
+<div id="wyoming-county-votes" class="section level2">
+<h2>Wyoming County Votes</h2>
+<pre class="r"><code>plot_usmap(&quot;county&quot;,data=democrat_county, values = &quot;ratio&quot;, include = c(.mountain), exclude = c(&quot;AZ&quot;,&quot;ID&quot;,&quot;MT&quot;,&quot;NV&quot;,&quot;NM&quot;,&quot;UT&quot;,&#39;CO&#39;))+
+  labs(title = &quot;2020 Presidential Election Results Wyoming&quot;)+
+  scale_fill_gradient2(high = (&quot;midnightblue&quot;), low = muted(&quot;red4&quot;), midpoint = .5)+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<br> This map shows how each county in Wyoming voted. Since Wyoming is
+typically a red state most of the counties voted for Donald Trump. 69.9%
+of the vote went to Donald Trump.</p>
+</div>
+<div id="top-6-candidates-in-2020-presidential-election"
+class="section level2">
+<h2>Top 6 Candidates in 2020 Presidential Election</h2>
+<pre class="r"><code>president_county = read.csv(&quot;C:\\Users\\maete\\Downloads\\STAT2600\\president_county.csv&quot;)
+president_state = read.csv(&quot;C:\\Users\\maete\\Downloads\\STAT2600\\president_state.csv&quot;)
+president_county_candidate = read.csv(&quot;C:\\Users\\maete\\Downloads\\STAT2600\\president_county_candidate.csv&quot;)
+#view(president_county_candidate)
+#view(president_state)
+
+max_voted_candidate &lt;- president_county_candidate %&gt;%
+  group_by(candidate) %&gt;%
+  summarize(total_votes_by_candidate = sum(total_votes))%&gt;%
+  arrange(desc(total_votes_by_candidate))%&gt;%
+  filter(total_votes_by_candidate&gt;100000)
+#view(max_voted_candidate)
+
+options(scipen = 999)  ##removes scientific notation 
+
+ggplot(max_voted_candidate)+
+  geom_col(mapping = aes(x=reorder(candidate, -total_votes_by_candidate), y=total_votes_by_candidate, fill=candidate))+
+  ggtitle(&quot;Top Candidates 2020 Presidential Election&quot;)+
+  xlab(&quot;Candidates&quot;)+
+  ylab(&quot;Total Votes Per Candidate&quot;)+
+  scale_fill_manual(values = c( &quot;Joe Biden&quot;=&quot;midnightblue&quot;, &quot;Donald Trump&quot;=&quot;red3&quot;, &quot;Jo Jorgensen&quot;=&quot;goldenrod2&quot;, &quot;Howie Hawkins&quot;=&quot;darkgreen&quot;,  &quot;Brian Carroll&quot;=&quot;darkorange&quot;, &quot;Write-ins&quot;=&quot;gray77&quot;))</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The code above is to graph the top 6 candidates in descending order
+from Joe Biden getting the most votes to the write ins getting the least
+amount of votes. Each color is chosen by what that party’s color is.</p>
+<pre><code>## # A tibble: 6 × 2
+##   candidate       total_votes_by_candidate
+##   &lt;chr&gt;                              &lt;int&gt;
+## 1 &quot;Joe Biden&quot;                     79409294
+## 2 &quot;Donald Trump&quot;                  73472591
+## 3 &quot;Jo Jorgensen&quot;                   1837566
+## 4 &quot;Howie Hawkins&quot;                   386737
+## 5 &quot;Brian Carroll&quot;                   219899
+## 6 &quot; Write-ins&quot;                      154724</code></pre>
+<p>This table shows the exact number of votes each candidate got in the
+race. ## Donald Trump’s Approval Rating Calculation #
+<code>{r} # trump = read.csv("C:\\Users\\maete\\Downloads\\donaldtrumpapproval.csv") # #trump # trump$Start.Date = mdy(trump$Start.Date) #mdy is month, date, year to change format # trump$End.Date = mdy(trump$End.Date) # trump = arrange(trump, -desc(Start.Date)) #arranges dates in ascending order # #summary(trump) # trump_average_approval =  #   trump %&gt;%  #   dplyr::select(Start.Date, Approving) %&gt;% #   summarize(average_approval = mean(Approving)) # trump_average_approval #</code></p>
+</div>
+<div
+id="average-presidential-approval-ratings-for-the-past-14-presidents"
+class="section level2">
+<h2>Average Presidential Approval Ratings for the Past 14
+Presidents</h2>
+<pre class="r"><code>presidentsapproval = read.csv(&quot;C:\\Users\\maete\\Downloads\\STAT2600\\allpresidentsapproval.csv&quot;)
+#view(presidentsapproval)
+ggplot(data=presidentsapproval)+
+  geom_col(mapping = aes(x = President, y=Approvalaverage.37.))+
+  ggtitle(&quot;Average Presidential Approval Ratings&quot;)+
+  ylab(&quot;Average Approval Rating&quot;)+
+  scale_fill_manual(values = c( &quot;Trump&quot;=&quot;red3&quot;, &quot;Truman&quot;=&quot;yellow&quot;))+
+  coord_flip()</code></pre>
+<p><img src="election_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<br> The code above shows the approval ratings of the past 14
+presidents. Trump’s average approval rating which turns out to be 43%.
+Although this isn’t as relevant to the rest of the data, I thought it
+was interesting to get a visual on other candidates in the past.</p>
+</div>
+</div>
+<div id="contrasting-opinions-on-election-data-ablation"
+class="section level1">
+<h1>Contrasting Opinions on Election Data/ Ablation</h1>
+<p>To make sure that all of my results were accurate, I compared them to
+professional plots made for the election results and they were
+practically identical. A common argument for this topic is widespread
+voter fraud where the count of all the ballots would be incorrect.
+Currently there isn’t proof of this but FBI investigations are still
+searching for any fraud that did occur in this election.</p>
+</div>
+<div id="literature-review" class="section level1">
+<h1>Literature Review</h1>
+<p>According to The Associated Press the actual vote count for Biden was
+81,283,009 and the vote count for Donald Trump was 74,223,287. The
+difference between Biden’s vote count and mine was that mine was short
+1,873,715 votes, and the difference between Trump’s vote count and mine
+was short 750,696 more than the actual vote count.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Joe Biden won the 2020 election with Donald Trump as a close second.
+You can see from the map how each state voted by looking at the shade of
+color. Many states were almost white which meant that they’re mostly
+swing states. The states that are dark blue are primarily states that
+were already democratic, and states that were dark red were already
+mostly republican. It will be interesting to see Joe Biden’s approval
+compared to the rest of the candidates seeing as this years election was
+so close, and Donald Trump’s ratings are some of the lowest in
+history.</p>
+</div>
+<div id="appendix-for-inital-data-cleaning" class="section level1">
+<h1>Appendix for Inital Data Cleaning</h1>
+<div id="code-used-in-election-map" class="section level3">
+<h3>Code Used in Election Map</h3>
+<pre class="r"><code>president_county_candidate = read.csv(&quot;C:\\Users\\maete\\Downloads\\STAT2600\\president_county_candidate.csv&quot;)
+
+
+democrat &lt;- president_county_candidate%&gt;%
+  group_by(candidate, state) %&gt;%
+  summarize(total_votes_by_candidate = sum(total_votes))%&gt;%
+  filter(candidate ==&quot;Joe Biden&quot;|candidate == &quot;Donald Trump&quot;)%&gt;%
+  group_by(state)%&gt;%
+  summarize(ratio = total_votes_by_candidate/ sum(total_votes_by_candidate), candidate=candidate)%&gt;%
+  filter(candidate == &quot;Joe Biden&quot;)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;candidate&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
+## dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
+##   always returns an ungrouped data frame and adjust accordingly.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;state&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<p>Explanation of Cleaning Code: <br> In order to create a map of the
+election data I needed to start by organizing the data where I would get
+a table that I can work with for ggplot. I started by grouping the
+candidate and state together and using summarize to add the total number
+of votes for the candidates by state. Since I only wanted republican vs
+democrat I put a filter on the candidates to make it where the only
+votes shown are Joe Biden’s and Donald Trump’s. To calculate the
+percentage of people that voted republican vs democrat I took the newly
+calculate total_votes_by_candidate for one candidate and divide it by
+the total number of votes for the two candidates. I had to add
+candidate=candidate to add a candidate column to the spreadsheet. Since
+it doesn’t matter whether or not you graph based on republican or
+democratic since the percentages will be accurate either way, then I
+just chose to graph based on the percentage of people that voted for
+Biden.</p>
+</div>
+<div id="cleaning-presidential-election-by-county-code"
+class="section level3">
+<h3>Cleaning Presidential Election by County Code</h3>
+<pre class="r"><code>county_fips_code = read.csv(&quot;C:\\Users\\maete\\Downloads\\Book1.csv&quot;)
+
+democrat_county &lt;- president_county_candidate%&gt;%
+  group_by(candidate, county) %&gt;%
+  summarize(total_votes_by_candidate = sum(total_votes))%&gt;%
+  filter(candidate ==&quot;Joe Biden&quot;|candidate == &quot;Donald Trump&quot;)%&gt;%
+  group_by( county)%&gt;%
+  summarize(ratio = total_votes_by_candidate/ sum(total_votes_by_candidate), candidate=candidate)%&gt;%
+  filter(candidate == &quot;Joe Biden&quot;)%&gt;%
+  mutate(county = str_remove(county,&quot; County&quot;))%&gt;%
+  left_join(county_fips_code, by=&quot;county&quot;)%&gt;%
+ # rename(fips = ï..fips )%&gt;%
+  ungroup()%&gt;%
+  dplyr::select(fips, ratio, candidate)%&gt;%
+  mutate(fips = as.character(fips))%&gt;%
+  filter(!is.na(fips))</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;candidate&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
+## dplyr 1.1.0.
+## ℹ Please use `reframe()` instead.
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
+##   always returns an ungrouped data frame and adjust accordingly.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;county&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## Warning in left_join(., county_fips_code, by = &quot;county&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 10 of `x` matches multiple rows in `y`.
+## ℹ Row 243 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<p><strong>Explanation of Code Above:</strong> <br> * Errors do not *
+Started with same code for state map but replaced state with county *
+Had to download a separate file that had the county fips code because
+plot_usmap doesn’t contain those values * Took county fips code data set
+and made changes to it where it would be able to join the democrat
+county data set. This involved changing the county names so they
+matched, and selecting the columns needed to have the fips match the
+county.</p>
+</div>
+</div>
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

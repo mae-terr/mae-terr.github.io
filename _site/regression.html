@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Maelynn Terr" />
+
+<meta name="date" content="2022-12-02" />
+
+<title>Global Wage Prediction Model</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Maelynn Terr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="election.html">Election Maps</a>
+</li>
+<li>
+  <a href="regression.html">Global Wage Regression Model</a>
+</li>
+<li>
+  <a href="bills.html">Bill Analyses</a>
+</li>
+<li>
+  <a href="traits.html">Personality Traits Regression</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Global Wage Prediction Model</h1>
+<h4 class="author">Maelynn Terr</h4>
+<h4 class="date">December 2, 2022</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>As someone who has considered pursuing a higher level of education, I
+often wonder how much this will enhance my work earnings, not only in
+the United States, but across the world. For this project I am exploring
+the strength of the linear relationship between wages and age, sex,
+country, and level of education. I created a Multiple Regression Model
+to predict how my income will change if I move to another continent, and
+how my income in those different continents shifts when my education
+level changes from a bachelor’s to a masters or doctorate. The goal is
+to be able to recognize how different countries value education by
+calculating those differences. The predictors are age, sex, country, and
+level of education, while wage is the response.</p>
+<p>The null and alternate hypothesis for the F-statisic are as
+follows:</p>
+<span class="math display">\[\begin{aligned}
+&amp; H_0:\beta_1 = \beta_2 = \ldots = \beta_i = 0 \\
+&amp; H_A: \beta_1 \neq 0 \text{ OR } \beta_2 \neq 0 \text{ OR } \ldots
+\text{ OR } \beta_i \neq 0  \\ &amp;(\text{At least one } \beta_i \neq
+0) \\
+\\
+&amp; \text{ Written meaning:} \\
+
+\\
+&amp; H_0: \text{There is no statitsical association between the
+predictors and the response} \\
+&amp; H_A: \text{There is some statitsical association between at least
+one of the predictors and the response}
+\end{aligned}\]</span>
+</div>
+<div id="data-preparation" class="section level1">
+<h1>Data Preparation</h1>
+<p>The Organisation for Economic Co-operation and Development(OECD) is
+the data source I retrieved my information from. Countries that are part
+of the organization have governments committed to democracy and the
+international market economy. The original data came from Education at a
+Glance, a source that tracks data on education around the world.</p>
+<p>One important variable to understand about my data set is how the
+predictor, income, is presented. Since this data encompasses all OECD
+countries, wage levels are calculated by dividing low and high pay. Low
+pay is the share of workers that earn less than two thirds of median
+wage while high pay is the share of workers that earn more than one and
+a half of median wage.</p>
+<p>All of my predictor variables are categorical. The sex is a
+qualitative, nominal variable assigned as male and female. Age is
+ordinal and is in groups set at 25-34, and 55-64. Education level is
+also an ordinal and categorical with variables, upper secondary
+education(equivalent to high school degree in the U.S.), bachelor’s or
+equivalent education, and master’s, doctoral or equivalent education.
+One important change I made to the data set was adding a column of
+continents. Since understanding the data strictly by country there are
+too many variables, and adding continents made it easier to understand
+big picture differences. Categorizing by continent also gave me the
+opportunity to visualize the data neatly.</p>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory Analysis</h1>
+<p><img src="regression_files/figure-html/unnamed-chunk-2-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 1</strong> *<em>NA is Oceania and islands</em></p>
+<p>As expected, the higher your level of education is, the higher your
+earnings are on average. None of the predictors taken from this source
+are dependent on one another, so there is no double counting within the
+model. No predictors are correlated with one another, but some are
+individually correlated with the response.</p>
+</div>
+<div id="model-development" class="section level1">
+<h1>Model Development</h1>
+<p>My null hypothesis under the F-statistic is that there is no
+statistical association between age, level of education, continent and
+wage. The alternate hypothesis under the F-statistic is there is at
+least one variable out of age, level of education, and continent with
+statistical association to wage. My null hypothesis and alternate
+hypothesis is the same idea as the F-statistic, but instead compares
+each individual variable rather than at least one.</p>
+<p>I split my data where 70% is in the training set, while the other 30%
+is in the test set. For my model I have the goal of prediction, so the
+hierarchical rule does not apply, and since we are using a multiple
+regression model, we do not need to worry about any violation of
+normality. Since variables are independent, lack co linearity, and do
+not have any influential outliers, all assumptions have been validated
+and the final regression model is suitable for prediction.</p>
+<p>Using backward step-wise selection I removed variables that did not
+have as high of p-values than others. This resulted in me taking out
+levels of education that are equivalent to Middle and Elementary grades
+in the U.S. One result I was surprised to see was that sex negatively
+affected the accuracy of the model, so I chose to remove it as well.</p>
+<p>The total number of variables that resulted in the lowest Adjusted
+R-Squared was the model with 7 predictor variables. You can see in the
+Adjusted R-Squared plot and the Residual sum of squares plot that 7
+variables is when the model’s accuracy stops growing.</p>
+<p><img src="regression_files/figure-html/unnamed-chunk-3-1.png" width="50%" /><img src="regression_files/figure-html/unnamed-chunk-3-2.png" width="50%" /></p>
+<p><strong>Figure 2, 3</strong></p>
+<p>In Figure 2 and 3 the model is taking the 7 best predictors and
+showing their influence on the accuracy of the model using Adjusted
+R-Squared and the Residual Sum of Squares.</p>
+<p><img src="regression_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 4</strong></p>
+<p>Ultimately the predictors that gave me the most accurate model were
+age, level of education, and location. You can see the predictor’s
+significance visually in Figure 4 and quantitatively in the model
+summary in Figure 5.</p>
+<pre><code>## 
+## Call:
+## lm(formula = Value ~ Age + ISC11A.1 + Continent, data = educvarstrain)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -99.33 -20.67  -4.08  17.08 337.61 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           134.955      4.182  32.274  &lt; 2e-16 ***
+## Age25-64 years                         18.661      2.409   7.746 1.73e-14 ***
+## Age55-64 years                         26.063      2.465  10.572  &lt; 2e-16 ***
+## ISC11A.1Master’s,Doctoral/equivalent   41.316      2.157  19.156  &lt; 2e-16 ***
+## ISC11A.1Upper Secondary Edu           -65.311      3.180 -20.538  &lt; 2e-16 ***
+## ContinentEurope                        -9.534      4.026  -2.368    0.018 *  
+## ContinentNorth America                 31.414      4.741   6.626 4.79e-11 ***
+## ContinentSouth America                103.620      5.780  17.928  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 38.73 on 1500 degrees of freedom
+##   (760 observations deleted due to missingness)
+## Multiple R-squared:  0.5426, Adjusted R-squared:  0.5405 
+## F-statistic: 254.2 on 7 and 1500 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>Figure 5</strong></p>
+</div>
+<div id="model-assessment" class="section level1">
+<h1>Model Assessment</h1>
+<p>The result from the summary of my model in Figure 5 includes a
+F-statistic p-value of &lt; 2.2e-16 which immediately indicates that
+there is some statistical association between at least one of the
+predictors and the response. I reject the null hypothesis in favor of
+the alternate. The same applies for each individual predictor variable.
+After performing backward-stepwise selection, each variable has some
+statistical association with wage. The adjusted R-squared is lower than
+ideal at 0.5855 meaning that 59% of variation of age, education, and
+continent, can be explained by the linear association with wage. This
+result is to be expected since we are predicting for 5 continents. When
+we eventually focus on one specific area, the result is more accurate
+since there is less variability in the data.</p>
+<p>The residual standard error is 38.73 on 1500 degrees of freedom,
+meaning we can expect our prediction to be off by an average 38.73
+percentage points. This error is not bad, in the context of the problem,
+since we are evaluating values ranging from 88% to 650%.</p>
+<p>To identify outliers in the model, we refer to the Scale-Location
+plot in Figure 6.</p>
+<p><img src="regression_files/figure-html/unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Figure 6</strong></p>
+<p>The outliers in this model are both from Chile. These two points have
+master’s and doctoral as their level of education with age 55-64 years,
+where the only difference is sex. The first is data point 11861, which
+is the farthest outlier, is female. Slightly below is data point 13809
+which is the same in all variables except the sex is male. The earnings
+were 644% and 586%. When viewing the highest wages of the data set as a
+whole, these points are some of the highest. In fact, all the highest
+wages are in Chile. Upon further research I can now see that Chile has
+an extremely high poverty rate, and their income distribution is large,
+so it would make sense that a master’s or doctorate is valued the most
+in terms of earnings in Chile. Since these outliers do not lie within
+Cook’s Distance they are not highly influential points, and I see no
+reason to remove them.</p>
+<p>The calculated root mean squared error(RMSE) is 47%. This was found
+by using the test set to calculate the difference between the predicted
+income vs actual income, then squaring the difference, taking the mean,
+and then finally taking the square root.</p>
+<p>Since I want to predict what my own potential salary could be if I
+went from a bachelor’s to a master’s, or doctorate, I created a separate
+model for North America, South America, Europe, and Asia. This will
+allow me to see which continents value that extra level of education the
+most.</p>
+<div id="north-america" class="section level4">
+<h4>North America</h4>
+<pre><code>## 
+## Call:
+## lm(formula = Value ~ ISC11A.1 + Age + SEX, data = na_datatrain)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -109.465  -21.173   -6.682   18.078  178.781 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           152.863      7.595  20.128  &lt; 2e-16 ***
+## ISC11A.1Master’s,Doctoral/equivalent   67.040      7.370   9.096  &lt; 2e-16 ***
+## ISC11A.1Upper Secondary Edu           -60.301     10.674  -5.649 5.78e-08 ***
+## Age25-64 years                         28.621      8.077   3.544 0.000496 ***
+## Age55-64 years                         24.025      8.700   2.761 0.006317 ** 
+## SEXM                                    1.015      6.866   0.148 0.882579    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 48 on 191 degrees of freedom
+##   (29 observations deleted due to missingness)
+## Multiple R-squared:  0.4929, Adjusted R-squared:  0.4796 
+## F-statistic: 37.12 on 5 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>##        fit     lwr      upr
+## 1 152.8626 57.0108 248.7145</code></pre>
+<pre><code>##        fit      lwr     upr
+## 1 219.9028 123.8995 315.906</code></pre>
+<p><strong>Figure 7</strong></p>
+<p><em>see Data Preparation to interpret income percent</em></p>
+<p>Figure 7 has an Adjusted R-squared 48%, meaning 48% of variation in
+sex, age, and education can be explained by its linear association with
+earnings in North America. This score is the lowest of the continents
+because of the level of variation in the data, which you can see when
+predicting how large the earnings interval is.</p>
+<p>I am 95% confident that if I, a female, worked in North America and
+am between 25-34 years old with a bachelor’s or equivalent, my income
+would be between 57% and 249%. This is a huge range of values that your
+income could be! The 57% is the lowest wage percentage you will see,
+meaning if you get a Bachelors in North America you have a fairly high
+chance of getting an income on the lower side. This makes me believe
+that the countries do not value the Bachelor’s degree as much as other
+countries in the world. However if everything were the same, except my
+level of education was instead a Master’s or Doctoral equivalent, my
+income would be between 123% and 315%.</p>
+<p>Achieving a high level of education such as a masters or doctoral
+definitely gives someone better odds of earning a higher wage. The
+difference of expected wage between the bachelors and masters or
+doctorate, is a 66% increase in earnings.</p>
+</div>
+<div id="south-america" class="section level4">
+<h4>South America</h4>
+<pre><code>## 
+## Call:
+## lm(formula = Value ~ ISC11A.1 + SEX + Age, data = sa_datatrain)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -82.564 -26.277  -2.118  26.337 133.926 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           237.770     10.366  22.937  &lt; 2e-16 ***
+## ISC11A.1Master’s,Doctoral/equivalent  201.919     11.027  18.311  &lt; 2e-16 ***
+## ISC11A.1Upper Secondary Edu          -165.662      9.509 -17.422  &lt; 2e-16 ***
+## SEXM                                  -10.716      7.825  -1.369 0.173950    
+## Age25-64 years                         36.606      9.553   3.832 0.000222 ***
+## Age55-64 years                         69.953      9.532   7.339 5.82e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 40.08 on 100 degrees of freedom
+##   (95 observations deleted due to missingness)
+## Multiple R-squared:  0.9385, Adjusted R-squared:  0.9354 
+## F-statistic: 305.2 on 5 and 100 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>##        fit      lwr      upr
+## 1 237.7702 155.6429 319.8975</code></pre>
+<pre><code>##       fit      lwr      upr
+## 1 439.689 357.5779 521.8001</code></pre>
+<p><strong>Figure 8</strong></p>
+<p>The adjusted R-squared of Figure 8 is 94%, the highest linear
+association of all the models!</p>
+<p>I am 95% confident that if I worked in South America and am between
+25-34 years old with a bachelor’s or equivalent, my income would be
+between 156% and 319%. This is a major increase in earnings compared to
+North America. If the predictors remained constant, except my level of
+education was instead a Master’s or Doctoral equivalent, my income would
+be between 358% and 522%.</p>
+<p>A higher level of education such as a masters or doctoral practically
+guarantees a higher wage. This makes intuitive sense because South
+America, a less developed country than the rest in comparison, has a
+high demand for people with higher levels of education. Having a
+bachelors versus masters or doctorate results in an average of 202%
+earnings increase.</p>
+</div>
+<div id="europe" class="section level4">
+<h4>Europe</h4>
+<pre><code>## 
+## Call:
+## lm(formula = Value ~ ISC11A.1 + SEX + Age, data = eur_datatrain)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -52.612 -14.503  -2.598  10.431  99.941 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                          129.0472     1.5252  84.610  &lt; 2e-16 ***
+## ISC11A.1Master’s,Doctoral/equivalent  31.9781     1.4134  22.625  &lt; 2e-16 ***
+## ISC11A.1Upper Secondary Edu          -36.6337     2.0589 -17.793  &lt; 2e-16 ***
+## SEXM                                  -0.2218     1.3161  -0.169    0.866    
+## Age25-64 years                        13.2513     1.5949   8.308 2.86e-16 ***
+## Age55-64 years                        22.4434     1.6405  13.681  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 21.72 on 1087 degrees of freedom
+##   (217 observations deleted due to missingness)
+## Multiple R-squared:  0.5762, Adjusted R-squared:  0.5743 
+## F-statistic: 295.6 on 5 and 1087 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>##        fit      lwr      upr
+## 1 129.0472 86.32016 171.7743</code></pre>
+<pre><code>##        fit      lwr      upr
+## 1 161.0253 118.2977 203.7529</code></pre>
+<p><strong>Figure 9</strong></p>
+<p>Figure 9 has an adjusted R-squared of 57%, a lower association than
+we would prefer but still relevant.</p>
+<p>I am 95% confident that if I worked in Europe and am between 25-34
+years old with a bachelor’s or equivalent, my income would be between
+86% and 172%. This interval does not guarantee as good of a wage with a
+bachelors than South America does. However if everything were the same
+except my level of education was instead a master’s or doctoral, my
+income would be between 118% and 204%.</p>
+<p>Obtaining a high level of education such as a master’s or doctoral
+definitely gives someone better odds of earning a higher wage, but does
+not guarantee it. The difference of expected wage between the bachelors
+and masters or doctorate, is a 32% increase in earnings.</p>
+</div>
+<div id="asia" class="section level4">
+<h4>Asia</h4>
+<pre><code>## 
+## Call:
+## lm(formula = Value ~ ISC11A.1 + SEX + Age, data = asia_datatrain)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -26.363 -15.552  -4.274  11.445  44.057 
+## 
+## Coefficients:
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                           130.547      3.819  34.184  &lt; 2e-16 ***
+## ISC11A.1Master’s,Doctoral/equivalent   50.062      3.450  14.509  &lt; 2e-16 ***
+## SEXM                                  -12.118      3.453  -3.510 0.000669 ***
+## Age25-64 years                         26.768      4.149   6.452 3.76e-09 ***
+## Age55-64 years                         35.889      4.249   8.447 2.18e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 17.83 on 102 degrees of freedom
+##   (44 observations deleted due to missingness)
+## Multiple R-squared:  0.7403, Adjusted R-squared:  0.7301 
+## F-statistic: 72.68 on 4 and 102 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>##        fit      lwr      upr
+## 1 130.5466 94.37123 166.7219</code></pre>
+<pre><code>##        fit      lwr     upr
+## 1 180.6081 144.4603 216.756</code></pre>
+<p><strong>Figure 10</strong></p>
+<p>The adjusted R-Squared in Figure 10 is 76%, meaning there is a strong
+linear association between the predictors and the response.</p>
+<p>I am 95% confident that if I worked in Asia and was between 25-34
+years old with a bachelor’s or equivalent, my income would be between
+93% and 163%. If everything were the same, except my level of education
+was a master’s or doctoral equivalent, my income would be between 146%
+and 216%.</p>
+<p>Achieving a high level of education such as a masters or doctoral
+gives someone much better odds of earning a higher wage. The difference
+of expected wage between the bachelor’s and master’s or doctorate, is a
+53% increase in earnings.</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Predicting income on a national level is something my model offers
+over perhaps a more standard model focused in one area. I wanted to see
+the big picture on a global scale, and this model encompasses countries
+whose population totals to about 1.38 billion people. One additional
+bonus that I did not expect to come out of my model was the fluctuation
+of the p-value of sex in Figures 7-11. Europe, North America, and South
+America had higher p-values meaning sex plays less of a role in wages.
+However Asia had a p-value below .05 meaning, being female vs male plays
+a major role in a person’s earnings. These models expose a lot about
+country’s development as well as factors they value in the workforce.
+These would be ultimately benefit any person who wants to travel and/ or
+is thinking about pursuing a higher level of education.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="citations" class="section level1">
+<h1>Citations</h1>
+<p>“Chile Overview.” World Bank, <a
+href="https://www.worldbank.org/en/country/chile/overview"
+class="uri">https://www.worldbank.org/en/country/chile/overview</a>.</p>
+<p>“Education and Earnings .” OECD, <a
+href="https://stats.oecd.org/Index.aspx?DataSetCode=EAG_EARNINGS"
+class="uri">https://stats.oecd.org/Index.aspx?DataSetCode=EAG_EARNINGS</a>.</p>
+</div>
+<div id="appendix" class="section level1">
+<h1>Appendix</h1>
+<pre><code>```r
+library(tidyverse)
+library(mosaic)
+library(knitr)
+library(tinytex)
+library(leaps)
+library(knitr)
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(out.width = &quot;50%&quot;)
+educvars &lt;- read.csv(&quot;C:\\Users\\maete\\OneDrive\\Documents\\Website and Blog\\education_earnings.csv&quot;)%&gt;%
+  subset(select = -ISC11A)%&gt;%
+  subset(select = -AGE)%&gt;%
+  subset(select = -COUNTRY)%&gt;%
+  subset(select = -INDICATOR)%&gt;%
+  subset(select = -MEASURE)%&gt;%
+  subset(select = -Measure)%&gt;%
+  subset(select = -YEAR)%&gt;%
+  subset(select = -Year)%&gt;%
+  subset(select = -Unit.Code)%&gt;%
+  subset(select = -Unit)%&gt;%
+  subset(select = -PowerCode.Code)%&gt;%
+  subset(select = -PowerCode)%&gt;%
+  subset(select = -Flag.Codes)%&gt;%
+  subset(select = -Flags)%&gt;%
+  subset(select = -Reference.Period.Code)%&gt;%
+  subset(select = -Gender)%&gt;%
+  subset(select = -Indicator)%&gt;%
+  subset(select = -EARN_CATEGORY)%&gt;%
+  subset(select = -EARN_CATEGORY.1)%&gt;%
+  subset(SEX!=&quot;T&quot;)%&gt;%
+  subset(ISC11A.1 != &quot;Below upper secondary education&quot;)%&gt;%
+  subset(ISC11A.1 != &quot;Tertiary education&quot;)%&gt;%
+  subset(ISC11A.1 != &quot;Short-cycle tertiary education&quot;)%&gt;%
+  subset(ISC11A.1 != &quot;Bachelor&#39;s, Master’s, Doctoral or equivalent education&quot;)%&gt;%
+  subset(ISC11A.1 != &quot;Post-secondary non-tertiary education&quot;)
+
+
+educvars$ISC11A.1[educvars$ISC11A.1 == &quot;Upper secondary, post-secondary non-tertiary education and short-cycle tertiary education&quot;]&lt;- &quot;Upper Secondary Edu&quot; 
+
+educvars$ISC11A.1[educvars$ISC11A.1 == &quot;Master’s, Doctoral or equivalent education&quot;]&lt;- &quot;Master’s,Doctoral/equivalent&quot; 
+
+north_america&lt;- c(&quot;United States&quot;, &quot;Canada&quot;, &quot;Costa Rica&quot;, &quot;Mexico&quot;)
+south_america&lt;-c(&quot;Chile&quot;, &quot;Colombia&quot;, &quot;Dominican Republic&quot;, &quot;Ecuador&quot;, &quot;El Salvador&quot;,&quot;Panama&quot;,&quot;Paraguay&quot;, &quot;Brazil&quot;)
+europe&lt;- c(&quot;Austria&quot;, &quot;Belgium&quot;, &quot;Czech Republic&quot;, &quot;Denmark&quot;,&quot;Estonia&quot;,&quot;Finland&quot;, &quot;France&quot;, &quot;Germany&quot;, &quot;Greece&quot;,&quot;Hungary&quot;, &quot;Iceland&quot;,&quot;Ireland&quot;,&quot;Italy&quot;,&quot;Latvia&quot;,&quot;Lithuania&quot;,&quot;Luxembourg&quot;,&quot;Netherlands&quot;,&quot;Norway&quot;, &quot;Poland&quot;,&quot;Portugal&quot;, &quot;Slovakia&quot;,&quot;Slovenia&quot;,&quot;Spain&quot;,&quot;Sweden&quot;,&quot;Switzerland&quot;, &quot;Turkey&quot;, &quot;United Kingdom&quot;, &quot;Luxembourg&quot;)
+asia&lt;- c(&quot;Israel&quot;, &quot;Japan&quot;,&quot;South Korea&quot;, &quot;Singapore&quot;,&quot;Thailand&quot;, &quot;Malaysia&quot;, &quot;Cambodia&quot;, &quot;Korea&quot;, &quot;Türkiye&quot;)
+
+attach(educvars)
+educvars$Continent[Country %in% north_america]&lt;-&quot;North America&quot;
+educvars$Continent[Country %in% europe]&lt;-&quot;Europe&quot;
+educvars$Continent[Country %in% south_america]&lt;-&quot;South America&quot;
+educvars$Continent[Country %in% asia]&lt;-&quot;Asia&quot;
+detach(educvars)
+
+#Seperating Each Data Set by Continent
+na_data&lt;-educvars%&gt;%
+  subset(Continent == &quot;North America&quot;)
+sa_data&lt;-educvars%&gt;%
+  subset(Continent == &quot;South America&quot;)
+eur_data&lt;-educvars%&gt;%
+  subset(Continent == &quot;Europe&quot;)
+asia_data&lt;-educvars%&gt;%
+  subset(Continent == &quot;Asia&quot;)
+
+set.seed(101)
+sample &lt;- sample.int(n=nrow(educvars),size=floor(0.7*nrow(educvars)),replace=FALSE)
+
+educvarstrain &lt;- educvars[sample,]
+educvarstest &lt;- educvars[-sample,]
+
+# model1&lt;-lm(Value~SEX+Age+ISC11A.1+Country, data=educvars)
+# summary(model1)
+# 
+# model2&lt;-lm(Value~Country, data=educvars)
+# summary(model2)
+# 
+# model3&lt;-lm(Value~Age, data=educvars)
+# summary(model3)
+# 
+# model4&lt;-lm(Value~ISC11A.1, data=educvars)
+# summary(model4)
+# 
+# model5&lt;-lm(Value~SEX, data=educvars)
+# summary(model5)
+
+summary(educvars)
+ggplot(data=educvars,aes(x=Continent,y=Value)) +
+  ylab(&quot;Earnings&quot;)+
+  geom_jitter(width=0,height=0.1,alpha=0.3) +
+  geom_boxplot(alpha=0)+
+  geom_point(alpha=.3, aes(color=ISC11A.1))+
+  theme_bw()
+choosing&lt;-regsubsets(Value~SEX+Age+ISC11A.1+Continent, data=educvars, nvmax=10, method=&quot;backward&quot;)
+choosing.summary&lt;-summary(choosing)
+plot(choosing.summary$rsq, xlab = &quot;Number of Variables&quot;, ylab=&quot;Adjusted R-Squared&quot;, type=&quot;b&quot;, cex.axis=1.8, cex.lab=2.5)
+plot(choosing.summary$rss, xlab = &quot;Number of Variables&quot;, ylab = &quot;Residual Sum of Squares(RSS)&quot;, type=&quot;b&quot;, cex.axis=2, cex.lab=2.5)
+#which.max(choosing.summary$adjr2)
+plot(choosing, scale = &quot;r2&quot;, cex.axis=2.5, cex.lab=2.5)
+model6&lt;-lm(Value~Age+ISC11A.1+Continent, data=educvarstrain)
+summary(model6)
+#summ(model6)
+plot(model6, which=3)
+test_predict1 &lt;- educvarstest %&gt;%
+  mutate(prob=predict(model6,newdata=educvarstest,type=&#39;response&#39;))
+
+test_predict1 %&gt;%
+  summarize(accuracy=sqrt(mean((prob-Value)^2, na.rm=TRUE)))
+#using na_data
+set.seed(101)
+sample &lt;- sample.int(n=nrow(na_data),size=floor(0.7*nrow(na_data)),replace=FALSE)
+
+na_datatrain &lt;- na_data[sample,]
+na_datatest &lt;- na_data[-sample,]
+
+
+model7&lt;-lm(Value~ISC11A.1+Age+SEX, data=na_datatrain)
+summary(model7)
+
+#plot(model7)
+
+predict(model7, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Bachelor’s or equivalent education&quot;), interval=&quot;prediction&quot;, level=.95)
+
+predict(model7, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Master’s,Doctoral/equivalent&quot;), interval=&quot;prediction&quot;, level=.95)
+# ggplot(data=na_data,aes(x=Country,y=Value)) +
+#   geom_jitter(width=0,height=0.1,alpha=0.2) +
+#   geom_boxplot(alpha=0)+
+#   geom_point(alpha=.3, aes(color=ISC11A.1))+
+#   theme_bw()
+#using sa_data
+set.seed(101)
+sample &lt;- sample.int(n=nrow(sa_data),size=floor(0.7*nrow(sa_data)),replace=FALSE)
+
+sa_datatrain &lt;- sa_data[sample,]
+sa_datatest &lt;- sa_data[-sample,]
+
+model8&lt;-lm(Value~ISC11A.1+SEX+Age, data=sa_datatrain)
+summary(model8)
+
+predict(model8, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Bachelor’s or equivalent education&quot;), interval=&quot;prediction&quot;, level=.95)
+
+predict(model8, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Master’s,Doctoral/equivalent&quot;), interval=&quot;prediction&quot;, level=.95)
+set.seed(101)
+sample &lt;- sample.int(n=nrow(eur_data),size=floor(0.7*nrow(eur_data)),replace=FALSE)
+
+eur_datatrain &lt;- eur_data[sample,]
+eur_datatest &lt;- eur_data[-sample,]
+
+model9&lt;-lm(Value~ISC11A.1+SEX+Age, data=eur_datatrain)
+summary(model9)
+
+predict(model9, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Bachelor’s or equivalent education&quot;), interval=&quot;prediction&quot;, level=.95)
+
+predict(model9, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Master’s,Doctoral/equivalent&quot;), interval=&quot;prediction&quot;, level=.95)
+set.seed(101)
+sample &lt;- sample.int(n=nrow(asia_data),size=floor(0.7*nrow(asia_data)),replace=FALSE)
+
+asia_datatrain &lt;- asia_data[sample,]
+asia_datatest &lt;- asia_data[-sample,]
+
+model10&lt;-lm(Value~ISC11A.1+SEX+Age, data=asia_datatrain)
+summary(model10)
+
+predict(model10, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Bachelor’s or equivalent education&quot;), interval=&quot;prediction&quot;, level=.95)
+
+predict(model10, newdata=data.frame(SEX=&quot;F&quot;, Age = &quot;25-34 years&quot;, ISC11A.1=&quot;Master’s,Doctoral/equivalent&quot;), interval=&quot;prediction&quot;, level=.95)
+```</code></pre>
+</div>
+
+<p>Copyright &copy; 2016 Skynet, Inc. All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
